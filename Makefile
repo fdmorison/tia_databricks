@@ -12,7 +12,7 @@ install:
 	@uv pip install -e .
 
 install-dev:
-	@uv sync --all-groups
+	@uv sync --all-groups --extra connect
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info

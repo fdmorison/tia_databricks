@@ -19,10 +19,16 @@ classifiers = [
   "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
 ]
 
-# databricks-connect ships its own pyspark, so tiozin[tio_spark] must not be installed alongside it
 dependencies = [
   "tiozin[tio_kernel] >=4.0.0,<5.0.0",
   "databricks-sdk ~=0.102.0",
+]
+
+[project.optional-dependencies]
+spark = [
+  "tiozin[tio_spark] >=4.0.0,<5.0.0",
+]
+connect = [
   "databricks-connect >=15.4.0,<17.0.0",
 ]
 
@@ -51,6 +57,10 @@ Issues = "https://github.com/fdmorison/tia_databricks/issues"
 
 [tool.uv]
 required-version = ">=0.8.1"
+# databricks-connect ships its own pyspark and cannot be installed alongside tiozin[tio_spark]
+conflicts = [
+  [{ extra = "spark" }, { extra = "connect" }],
+]
 
 [[tool.uv.index]]
 name = "pypi"
