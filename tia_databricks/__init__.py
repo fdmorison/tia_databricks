@@ -17,3 +17,8 @@ with suppress(ImportError):
     from .runners.connect_runner import DatabricksConnectRunner
 
     __all__ += ["DatabricksConnectRunner"]
+
+with suppress(ImportError):
+    from .runners.external_runner import DatabricksExternalRunner
+
+    __all__ += ["DatabricksExternalRunner"]
