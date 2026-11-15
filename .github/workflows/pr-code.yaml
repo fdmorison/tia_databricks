@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - "families/**/*.py"
+      - "tia_databricks/**/*.py"
       - "tests/**/*.py"
       - "pyproject.toml"
 

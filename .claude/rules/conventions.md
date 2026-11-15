@@ -157,7 +157,7 @@ A literal whose value **is** the message (log messages, error messages, warning 
 magic value. Naming it adds a layer of indirection without adding meaning, since the string already
 carries its own meaning in full.
 
-This rule applies only to production code (`families/`).
+This rule applies only to production code (`tia_databricks/`).
 
 Tests are exempt. Test code should optimize for readability rather than reuse. Inline literals make the scenario self-contained, whereas extracting them into constants hides the behavior being verified and makes tests harder to understand.
 

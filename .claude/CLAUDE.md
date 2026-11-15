@@ -26,7 +26,7 @@ make clean        # Remove unnecessary files such as builds and caches
 ## Directory Structure
 
 ```
-families/tia_databricks/  # Family package (public API: families/tia_databricks/__init__.py)
+tia_databricks/  # Family package (public API: tia_databricks/__init__.py)
 docs/            # User guides and plugin reference pages
 examples/        # Sample jobs
 tests/           # Unit and integration tests

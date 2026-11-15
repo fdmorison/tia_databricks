@@ -29,10 +29,10 @@ If any required parameter is missing or empty, creating the runner fails with a 
 
 ## Creating the Runner in Python
 
-The runner is exported from the `families.tia_databricks` package:
+The runner is exported from the `tia_databricks` package:
 
 ```python
-from families.tia_databricks import DatabricksConnectRunner
+from tia_databricks import DatabricksConnectRunner
 
 runner = DatabricksConnectRunner(
     host="https://my-workspace.cloud.databricks.com",

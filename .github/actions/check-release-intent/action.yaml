@@ -10,7 +10,7 @@ runs:
       with:
         filters: |
           release:
-            - 'families/**/*.py'
+            - 'tia_databricks/**/*.py'
             - 'pyproject.toml'
             - 'docs/**'
             - 'README.md'

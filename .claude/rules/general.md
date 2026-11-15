@@ -26,7 +26,7 @@ A change is only a breaking change if it affects the public API surface. Interna
 changes (including renames and removals) are not breaking. The public API surface
 is defined by:
 
-- `families/tia_databricks/__init__.py`
+- `tia_databricks/__init__.py`
 
 ## 5. `Input`, `Transform`, and `Output` Tiozins must remain stateless
 

@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from tiozin.exceptions import RequiredArgumentError
 
-from families.tia_databricks import DatabricksConnectRunner
+from tia_databricks import DatabricksConnectRunner
 
 
 # ============================================================================
@@ -116,8 +116,8 @@ def test_connect_runner_should_raise_required_argument_error_when_argument_is_mi
 # Testing DatabricksConnectRunner setup
 # ============================================================================
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_build_sdk_config_with_credentials(
     config_cls: MagicMock, _databricks_session: MagicMock, _current_context: MagicMock
 ):
@@ -141,8 +141,8 @@ def test_setup_should_build_sdk_config_with_credentials(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_build_databricks_session_from_sdk_config(
     config_cls: MagicMock, databricks_session: MagicMock, _current_context: MagicMock
 ):
@@ -164,8 +164,8 @@ def test_setup_should_build_databricks_session_from_sdk_config(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_expose_databricks_session(
     _config_cls: MagicMock, databricks_session: MagicMock, _current_context: MagicMock
 ):
@@ -187,8 +187,8 @@ def test_setup_should_expose_databricks_session(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_set_session_timezone(
     _config_cls: MagicMock, databricks_session: MagicMock, _current_context: MagicMock
 ):
@@ -214,8 +214,8 @@ def test_setup_should_set_session_timezone(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_set_options_as_spark_conf(
     _config_cls: MagicMock, databricks_session: MagicMock, _current_context: MagicMock
 ):
@@ -248,8 +248,8 @@ def test_setup_should_set_options_as_spark_conf(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("families.tia_databricks.runners.connect_runner.DatabricksSession")
-@patch("families.tia_databricks.runners.connect_runner.Config")
+@patch("tia_databricks.runners.connect_runner.DatabricksSession")
+@patch("tia_databricks.runners.connect_runner.Config")
 def test_setup_should_reuse_session_when_session_already_exists(
     _config_cls: MagicMock, databricks_session: MagicMock, _current_context: MagicMock
 ):

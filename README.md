@@ -24,7 +24,7 @@ The two extras cannot be combined. Databricks Connect ships its own PySpark, so 
 
 ## How Tiozin Finds It
 
-Tiozin discovers the family automatically through the `tiozin.family` entry point. The family is registered as `tia_databricks`, and its Python package is `families.tia_databricks`.
+Tiozin discovers the family automatically through the `tiozin.family` entry point. The family is registered as `tia_databricks`, and its Python package is `tia_databricks`.
 
 After installation, its plugins are available by class name in any job:
 
