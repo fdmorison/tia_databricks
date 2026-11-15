@@ -3095,6 +3095,16 @@ wheels = [
 ]
 
 [[package]]
+name = "pyspark"
+version = "3.5.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "py4j", version = "0.10.9.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "py4j", version = "0.10.9.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/95/ce/81e53e729790556e3983e95de1a7d5df91a34adfcd34b5a5ab0e0c6e9b33/pyspark-3.5.9.tar.gz", hash = "sha256:ea27adc39ddac9413b8951e45aa748cbed6c785971b81386efc41938f6243d93", size = 317858593, upload-time = "2026-07-16T08:52:04.494Z" }
+
+[[package]]
 name = "pytest"
 version = "8.4.2"
 source = { registry = "https://pypi.org/simple" }
@@ -3776,10 +3786,18 @@ name = "tia-databricks"
 version = "0.0.0"
 source = { editable = "." }
 dependencies = [
-    { name = "databricks-connect", version = "16.1.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "databricks-connect", version = "16.4.24", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "databricks-sdk" },
     { name = "tiozin", extra = ["tio-kernel"] },
+]
+
+[package.optional-dependencies]
+connect = [
+    { name = "databricks-connect", version = "16.1.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "databricks-connect", version = "16.4.24", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "tiozin" },
+]
+tio-spark = [
+    { name = "tiozin", extra = ["tio-spark"] },
 ]
 
 [package.dev-dependencies]
@@ -3789,6 +3807,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "ruff" },
+    { name = "tia-databricks", extra = ["connect"] },
 ]
 lint = [
     { name = "pre-commit" },
@@ -3798,14 +3817,18 @@ test = [
     { name = "assertpy" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "tia-databricks", extra = ["connect"] },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "databricks-connect", specifier = ">=15.4.0,<17.0.0" },
+    { name = "databricks-connect", marker = "extra == 'connect'", specifier = ">=15.4.0,<17.0.0" },
     { name = "databricks-sdk", specifier = "~=0.102.0" },
     { name = "tiozin", extras = ["tio-kernel"], specifier = ">=4.0.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-spark"], marker = "extra == 'tio-spark'", specifier = ">=4.0.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-spark-base"], marker = "extra == 'connect'", specifier = ">=4.0.0,<5.0.0" },
 ]
+provides-extras = ["tio-spark", "connect"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -3814,6 +3837,7 @@ dev = [
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
     { name = "ruff", specifier = "==0.14.10" },
+    { name = "tia-databricks", extras = ["connect"] },
 ]
 lint = [
     { name = "pre-commit", specifier = "==4.3.0" },
@@ -3823,6 +3847,7 @@ test = [
     { name = "assertpy", specifier = "==1.1" },
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
+    { name = "tia-databricks", extras = ["connect"] },
 ]
 
 [[package]]
@@ -3859,6 +3884,10 @@ tio-kernel = [
     { name = "boto3" },
     { name = "google-cloud-secret-manager" },
     { name = "pyiceberg", extra = ["pyarrow", "sql-sqlite"] },
+]
+tio-spark = [
+    { name = "databricks-sdk" },
+    { name = "pyspark" },
 ]
 
 [[package]]
