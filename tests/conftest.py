@@ -3,7 +3,6 @@ from collections.abc import Generator
 from typing import Any
 
 import pytest
-from databricks.connect import DatabricksSession
 from databricks.sdk.core import Config
 from pyspark.sql import SparkSession
 
@@ -32,6 +31,8 @@ def spark_session(tmp_path_factory: pytest.TempPathFactory) -> Generator[SparkSe
 
 @pytest.fixture(scope="session")
 def databricks_connect_session() -> Generator[SparkSession, Any, None]:
+    from databricks.connect import DatabricksSession
+
     sdk_config = Config(
         host=env.DATABRICKS_HOST,
         cluster_id=env.DATABRICKS_CLUSTER_ID,
