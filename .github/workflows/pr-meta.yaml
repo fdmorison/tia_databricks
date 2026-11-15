@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Setup environment
-        uses: fdmorison/tiozin/.github/actions/setup-env@main
+        uses: ./.github/actions/setup-env
         with:
           fetch-depth: 0
 
