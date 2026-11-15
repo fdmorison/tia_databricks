@@ -3803,6 +3803,7 @@ dependencies = [
 connect = [
     { name = "databricks-connect", version = "16.1.7", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and extra == 'extra-14-tia-databricks-connect') or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
     { name = "databricks-connect", version = "16.4.24", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and extra == 'extra-14-tia-databricks-connect') or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "tiozin", marker = "extra == 'extra-14-tia-databricks-connect'" },
 ]
 tio-spark = [
     { name = "tiozin", extra = ["tio-spark"], marker = "extra == 'extra-14-tia-databricks-tio-spark'" },
@@ -3832,6 +3833,7 @@ requires-dist = [
     { name = "databricks-sdk", specifier = "~=0.102.0" },
     { name = "tiozin", extras = ["tio-kernel"], specifier = ">=4.0.0,<5.0.0" },
     { name = "tiozin", extras = ["tio-spark"], marker = "extra == 'tio-spark'", specifier = ">=4.0.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-spark-base"], marker = "extra == 'connect'", specifier = ">=4.0.0,<5.0.0" },
 ]
 provides-extras = ["tio-spark", "connect"]
 
