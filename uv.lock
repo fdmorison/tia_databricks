@@ -2,18 +2,10 @@ version = 1
 revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
-    "python_full_version >= '3.14' and extra != 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version < '3.14' and extra != 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version >= '3.14' and extra == 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version >= '3.12' and python_full_version < '3.14' and extra == 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version < '3.12' and extra == 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version >= '3.14' and extra != 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version < '3.14' and extra != 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
+    "python_full_version >= '3.14'",
+    "python_full_version >= '3.12' and python_full_version < '3.14'",
+    "python_full_version < '3.12'",
 ]
-conflicts = [[
-    { package = "tia-databricks", extra = "connect" },
-    { package = "tia-databricks", extra = "tio-spark" },
-]]
 
 [[package]]
 name = "adlfs"
@@ -68,7 +60,7 @@ dependencies = [
     { name = "frozenlist" },
     { name = "multidict" },
     { name = "propcache" },
-    { name = "typing-extensions", marker = "python_full_version < '3.13' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
     { name = "yarl" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/6c/4c/bdccd81e9ee225b69c60e7766c9a5b05364f118f4d383713b89a682d772d/aiohttp-3.14.5.tar.gz", hash = "sha256:5558a7f5a05af9ecf744af91e5baefc436f93c9333e656c27ec253f9a6bbe178", size = 8078052, upload-time = "2026-10-11T01:05:12.408Z" }
@@ -232,7 +224,7 @@ version = "1.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "frozenlist" },
-    { name = "typing-extensions", marker = "python_full_version < '3.13' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/61/62/06741b579156360248d1ec624842ad0edf697050bbaf7c3e46394e106ad1/aiosignal-1.4.0.tar.gz", hash = "sha256:f47eecd9468083c2029cc99945502cb7708b082c232f9aca65da147157b251c7", size = 25007, upload-time = "2025-07-03T22:54:43.528Z" }
 wheels = [
@@ -263,7 +255,7 @@ version = "4.14.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "idna" },
-    { name = "typing-extensions", marker = "python_full_version < '3.13' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz", hash = "sha256:cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f", size = 260176, upload-time = "2026-07-12T20:29:07.082Z" }
 wheels = [
@@ -565,7 +557,7 @@ name = "cffi"
 version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "pycparser", marker = "implementation_name != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz", hash = "sha256:dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be", size = 530807, upload-time = "2026-08-03T21:21:18.939Z" }
 wheels = [
@@ -963,7 +955,7 @@ name = "cryptography"
 version = "50.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/9d/af/182eb91b0df3fe75c4d9f26fe70684569566745f6ba7e5c9c73a862c5252/cryptography-50.0.2.tar.gz", hash = "sha256:7b46165bb56eb4704e2eaaf86f3c940d19154535d9b0ca7d6d590b04060e00d5", size = 880623, upload-time = "2026-09-30T15:30:04.884Z" }
 wheels = [
@@ -2666,10 +2658,8 @@ name = "py4j"
 version = "0.10.9.9"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.14' and extra != 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version < '3.14' and extra != 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version >= '3.14' and extra == 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
-    "python_full_version >= '3.12' and python_full_version < '3.14' and extra == 'extra-14-tia-databricks-connect' and extra != 'extra-14-tia-databricks-tio-spark'",
+    "python_full_version >= '3.14'",
+    "python_full_version >= '3.12' and python_full_version < '3.14'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/38/31/0b210511177070c8d5d3059556194352e5753602fa64b85b7ab81ec1a009/py4j-0.10.9.9.tar.gz", hash = "sha256:f694cad19efa5bd1dee4f3e5270eb406613c974394035e5bfc4ec1aba870b879", size = 761089, upload-time = "2025-01-15T03:53:18.624Z" }
 wheels = [
@@ -2973,7 +2963,7 @@ name = "pynacl"
 version = "1.6.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d9/9a/4019b524b03a13438637b11538c82781a5eda427394380381af8f04f467a/pynacl-1.6.2.tar.gz", hash = "sha256:018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c", size = 3511692, upload-time = "2026-01-01T17:48:10.851Z" }
 wheels = [
@@ -3109,7 +3099,8 @@ name = "pyspark"
 version = "3.5.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "py4j", version = "0.10.9.9", source = { registry = "https://pypi.org/simple" } },
+    { name = "py4j", version = "0.10.9.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "py4j", version = "0.10.9.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/95/ce/81e53e729790556e3983e95de1a7d5df91a34adfcd34b5a5ab0e0c6e9b33/pyspark-3.5.9.tar.gz", hash = "sha256:ea27adc39ddac9413b8951e45aa748cbed6c785971b81386efc41938f6243d93", size = 317858593, upload-time = "2026-07-16T08:52:04.494Z" }
 
@@ -3118,7 +3109,7 @@ name = "pytest"
 version = "8.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
@@ -3380,7 +3371,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
     { name = "rpds-py" },
-    { name = "typing-extensions", marker = "python_full_version < '3.13' or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/22/f5/df4e9027acead3ecc63e50fe1e36aca1523e1719559c499951bb4b53188f/referencing-0.37.0.tar.gz", hash = "sha256:44aefc3142c5b842538163acb373e24cce6632bd54bdb01b21ad5863489f50d8", size = 78036, upload-time = "2025-10-13T15:30:48.871Z" }
 wheels = [
@@ -3801,12 +3792,12 @@ dependencies = [
 
 [package.optional-dependencies]
 connect = [
-    { name = "databricks-connect", version = "16.1.7", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.12' and extra == 'extra-14-tia-databricks-connect') or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
-    { name = "databricks-connect", version = "16.4.24", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.12' and extra == 'extra-14-tia-databricks-connect') or (extra == 'extra-14-tia-databricks-connect' and extra == 'extra-14-tia-databricks-tio-spark')" },
-    { name = "tiozin", marker = "extra == 'extra-14-tia-databricks-connect'" },
+    { name = "databricks-connect", version = "16.1.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "databricks-connect", version = "16.4.24", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "tiozin" },
 ]
 tio-spark = [
-    { name = "tiozin", extra = ["tio-spark"], marker = "extra == 'extra-14-tia-databricks-tio-spark'" },
+    { name = "tiozin", extra = ["tio-spark"] },
 ]
 
 [package.dev-dependencies]
@@ -3816,6 +3807,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "ruff" },
+    { name = "tia-databricks", extra = ["connect"] },
 ]
 lint = [
     { name = "pre-commit" },
@@ -3825,6 +3817,7 @@ test = [
     { name = "assertpy" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "tia-databricks", extra = ["connect"] },
 ]
 
 [package.metadata]
@@ -3844,6 +3837,7 @@ dev = [
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
     { name = "ruff", specifier = "==0.14.10" },
+    { name = "tia-databricks", extras = ["connect"] },
 ]
 lint = [
     { name = "pre-commit", specifier = "==4.3.0" },
@@ -3853,6 +3847,7 @@ test = [
     { name = "assertpy", specifier = "==1.1" },
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
+    { name = "tia-databricks", extras = ["connect"] },
 ]
 
 [[package]]
