@@ -8,7 +8,7 @@ owner: literature@tiozin.com
 maintainer: tiozin
 cost_center: tio_scrooge
 labels:
-  catalog: data_platform
+  catalog: tiozin
 
 org: tiozin
 region: latam
@@ -21,7 +21,7 @@ layer: raw
 runner:
   kind: DatabricksExternalRunner
   format: iceberg
-  catalog: data_platform
+  catalog: tiozin
   host: "{{ ENV.DATABRICKS_HOST }}"
   client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
   client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
@@ -41,7 +41,7 @@ outputs:
   - kind: SparkTableOutput
     name: save_poems
     description: Raw Shakespeare texts as a Unity Catalog managed table.
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
     format: iceberg
     mode: overwrite
     partition_by: filestem
