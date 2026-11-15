@@ -9,7 +9,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "tia_databricks/**/*.py"
+      - "families/**/*.py"
       - "pyproject.toml"
 
 permissions:

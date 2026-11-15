@@ -21,7 +21,7 @@ tests/
   conftest.py    # Global pytest fixtures
   stubs/         # Reusable stub classes
   mocks/         # File-based mock data (YAML, JSON)
-  unit/          # Unit tests mirroring tia_databricks/ package structure
+  unit/          # Unit tests mirroring families/ package structure
   integration/   # Integration tests
 ```
 
