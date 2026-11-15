@@ -3,7 +3,9 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from tiozin.exceptions import RequiredArgumentError
 
-from tia_databricks import DatabricksConnectRunner
+pytest.importorskip("databricks.connect")
+
+from tia_databricks import DatabricksConnectRunner  # noqa: E402
 
 
 # ============================================================================
