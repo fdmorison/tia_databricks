@@ -47,7 +47,7 @@ lint = [
   "ruff ==0.14.10",
   "pre-commit ==4.3.0",
 ]
-spark = [
+pyspark = [
   "tia_databricks[tio_spark]",
 ]
 connect = [
@@ -64,6 +64,12 @@ Issues = "https://github.com/fdmorison/tia_databricks/issues"
 
 [tool.uv]
 required-version = ">=0.8.1"
+conflicts = [
+  [
+    { group = "pyspark" },
+    { group = "connect" },
+  ],
+]
 
 [[tool.uv.index]]
 name = "pypi"

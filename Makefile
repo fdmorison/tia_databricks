@@ -14,14 +14,14 @@ install:
 
 install-dev:
 	@rm -rf .venv
-	@uv sync --all-groups
+	@uv sync --group pyspark
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info
 
-install-spark:
+install-pyspark:
 	@rm -rf .venv
-	@uv sync --group spark
+	@uv sync --group pyspark
 
 install-connect:
 	@rm -rf .venv
@@ -36,7 +36,8 @@ check:
 	@uv run ruff format --check
 
 test: clean
-	@uv run pytest -vvv .
+	@UV_PROJECT_ENVIRONMENT=.venv-pyspark uv run --group pyspark pytest -vvv .
+	@UV_PROJECT_ENVIRONMENT=.venv-connect uv run --group connect pytest -vvv .
 
 build:
 	@uv build
