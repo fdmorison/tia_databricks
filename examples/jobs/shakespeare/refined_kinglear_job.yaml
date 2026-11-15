@@ -1,0 +1,54 @@
+kind: LinearJob
+name: refined_kinglear_job
+description: |
+  Produces word count metrics for King Lear as a refined data product.
+  Runs inside a Databricks cluster through Databricks Connect, reading and
+  writing Unity Catalog tables.
+
+owner: literature@tiozin.com
+maintainer: tiozin
+cost_center: tio_scrooge
+labels:
+  catalog: data_platform
+
+org: tiozin
+region: latam
+domain: literature
+subdomain: classics
+product: shakespeare
+model: kinglear
+layer: refined
+
+runner:
+  kind: DatabricksConnectRunner
+  host: "{{ ENV.DATABRICKS_HOST }}"
+  cluster_id: "{{ ENV.DATABRICKS_CLUSTER_ID }}"
+  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+
+inputs:
+  - kind: SparkTableInput
+    name: load_poems
+    description: Shakespeare source texts from raw layer.
+    layer: raw
+    model: shakespeare
+    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+
+transforms:
+  - kind: SparkSqlTransform
+    name: select_work
+    description: Keeps only the lines of King Lear.
+    query: SELECT value FROM @data WHERE filestem = 'kinglear'
+
+  - kind: SparkWordCountTransform
+    name: count_words
+    content_field: value
+    lowercase: true
+
+outputs:
+  - kind: SparkTableOutput
+    name: save_word_counts
+    description: Word counts of King Lear.
+    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    format: iceberg
+    mode: truncate

@@ -1,0 +1,65 @@
+kind: LinearJob
+name: ingestion_customer_job
+description: |
+  Minimal example job demonstrating a local Spark pipeline that writes
+  a managed Iceberg table in Databricks Unity Catalog, without Databricks Connect.
+
+owner: data@tiozin.com
+maintainer: tiozin
+cost_center: tio_scrooge
+labels:
+  catalog: data_platform
+
+org: tiozin
+region: eu
+domain: ecommerce
+subdomain: sales
+layer: raw
+product: storefront
+model: customers
+
+runner:
+  kind: DatabricksExternalRunner
+  format: iceberg
+  catalog: data_platform
+  host: "{{ ENV.DATABRICKS_HOST }}"
+  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+  jars_packages:
+    - org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.7.1
+
+inputs:
+  - kind: SparkFileInput
+    name: load_customers
+    description: Customer master data from source system.
+    path: examples/data/ecommerce/customers.csv
+    format: csv
+    header: true
+    inferSchema: true
+    schema_subject: auto
+
+transforms:
+  - kind: SparkSqlTransform
+    name: add_metadata
+    description: Adds ingestion metadata
+    query: |-
+      SELECT
+          *,
+          '{{job.run_id}}'       AS _{{layer}}_run_id,
+          '{{job.nominal_time}}' AS _{{layer}}_nominal_date,
+          current_timestamp()    AS _{{layer}}_created_at,
+          created_at             AS _source_created_at
+      FROM @data
+
+outputs:
+  - kind: SparkTableOutput
+    name: save_customers
+    description: Raw customer data as a Unity Catalog managed table.
+    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    format: iceberg
+    mode: merge
+    merge_keys: id
+    merge_exclude_fields:
+      - created_at
+      - _{{layer}}_created_at
+    partition_by: day(created_at)

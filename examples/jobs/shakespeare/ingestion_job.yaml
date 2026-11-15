@@ -1,0 +1,47 @@
+kind: LinearJob
+name: ingestion_shakespeare_job
+description: |
+  Ingests Shakespeare source texts into a managed Iceberg table in
+  Databricks Unity Catalog, running Spark locally without Databricks Connect.
+
+owner: literature@tiozin.com
+maintainer: tiozin
+cost_center: tio_scrooge
+labels:
+  catalog: data_platform
+
+org: tiozin
+region: latam
+domain: literature
+subdomain: classics
+product: shakespeare
+model: shakespeare
+layer: raw
+
+runner:
+  kind: DatabricksExternalRunner
+  format: iceberg
+  catalog: data_platform
+  host: "{{ ENV.DATABRICKS_HOST }}"
+  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+  jars_packages:
+    - org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.7.1
+
+inputs:
+  - kind: SparkFileInput
+    name: load_poems
+    description: Shakespeare source texts, one file per work.
+    path: examples/data/{{product}}
+    format: text
+    explode_filepath: true
+    schema_subject: auto
+
+outputs:
+  - kind: SparkTableOutput
+    name: save_poems
+    description: Raw Shakespeare texts as a Unity Catalog managed table.
+    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    format: iceberg
+    mode: overwrite
+    partition_by: filestem
