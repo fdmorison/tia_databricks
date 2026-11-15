@@ -62,4 +62,4 @@ outputs:
     merge_exclude_fields:
       - created_at
       - _{{layer}}_created_at
-    partition_by: day(created_at)
+    partition_by: days(created_at)

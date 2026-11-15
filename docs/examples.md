@@ -70,7 +70,7 @@ A two-step pipeline split across three jobs: raw ingestion for customers and ord
 
 | File | What it shows |
 |---|---|
-| [`ecommerce/ingestion_customer_job.yaml`](../examples/jobs/ecommerce/ingestion_customer_job.yaml) | CSV ingestion with `SparkFileInput`, ingestion metadata added with `SparkSqlTransform`, and output to `data_platform.default.raw_storefront_customers` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `day(created_at)` |
+| [`ecommerce/ingestion_customer_job.yaml`](../examples/jobs/ecommerce/ingestion_customer_job.yaml) | CSV ingestion with `SparkFileInput`, ingestion metadata added with `SparkSqlTransform`, and output to `data_platform.default.raw_storefront_customers` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `days(created_at)` |
 | [`ecommerce/ingestion_orders_job.yaml`](../examples/jobs/ecommerce/ingestion_orders_job.yaml) | Same ingestion pattern for orders, written to `data_platform.default.raw_storefront_orders` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `days(created_at)` |
 | [`ecommerce/refined_orders_job.yaml`](../examples/jobs/ecommerce/refined_orders_job.yaml) | Both raw tables read with `SparkTableInput`, joined in SQL, chained transforms with `@data`, a parameterized query with `args:`, and output to `data_platform.default.refined_storefront_high_value_orders` with `mode: truncate`, partitioned by `days(created_at)` |
 
