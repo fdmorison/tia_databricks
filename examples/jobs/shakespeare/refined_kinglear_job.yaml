@@ -9,7 +9,7 @@ owner: literature@tiozin.com
 maintainer: tiozin
 cost_center: tio_scrooge
 labels:
-  catalog: data_platform
+  catalog: tiozin
 
 org: tiozin
 region: latam
@@ -32,7 +32,7 @@ inputs:
     description: Shakespeare source texts from raw layer.
     layer: raw
     model: shakespeare
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
 
 transforms:
   - kind: SparkSqlTransform
@@ -49,6 +49,6 @@ outputs:
   - kind: SparkTableOutput
     name: save_word_counts
     description: Word counts of King Lear.
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
     format: iceberg
     mode: truncate

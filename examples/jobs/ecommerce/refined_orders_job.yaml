@@ -9,7 +9,7 @@ owner: data@tiozin.com
 maintainer: tiozin
 cost_center: tio_scrooge
 labels:
-  catalog: data_platform
+  catalog: tiozin
 
 org: tiozin
 region: eu
@@ -32,14 +32,14 @@ inputs:
     description: Customer master data from raw layer.
     layer: raw
     model: customers
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
 
   - kind: SparkTableInput
     name: load_orders
     description: Order transactions from raw layer.
     layer: raw
     model: orders
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
 
 transforms:
   - kind: SparkSqlTransform
@@ -86,7 +86,7 @@ outputs:
   - kind: SparkTableOutput
     name: save_high_value_orders
     description: High-value completed orders enriched with customer data.
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
     format: iceberg
     mode: truncate
     partition_by: days(created_at)

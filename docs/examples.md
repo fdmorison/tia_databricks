@@ -1,6 +1,6 @@
 # Examples
 
-All examples live under [`examples/jobs/`](../examples/jobs/) in the repository, and their source data lives under [`examples/data/`](../examples/data/). Each example is a self-contained job manifest that reads and writes tables in the `data_platform` catalog of [Unity Catalog](https://docs.databricks.com/aws/en/data-governance/unity-catalog/).
+All examples live under [`examples/jobs/`](../examples/jobs/) in the repository, and their source data lives under [`examples/data/`](../examples/data/). Each example is a self-contained job manifest that reads and writes tables in the `tiozin` catalog of [Unity Catalog](https://docs.databricks.com/aws/en/data-governance/unity-catalog/).
 
 The Ecommerce and Shakespeare scenarios mirror the [Spark examples in Tiozin](https://github.com/fdmorison/tiozin/blob/main/docs/examples.md), adapted to run against [Databricks](https://docs.databricks.com/).
 
@@ -28,7 +28,7 @@ One folder per data product. One YAML per job. No shared state between files.
 
 Each scenario has ingestion jobs and refined jobs, and they run Spark in different places:
 
-- **Ingestion jobs** run Spark on the local machine and write Unity Catalog tables from outside Databricks. They use [DatabricksExternalRunner](external-runner.md) with `format: iceberg` and `catalog: data_platform`.
+- **Ingestion jobs** run Spark on the local machine and write Unity Catalog tables from outside Databricks. They use [DatabricksExternalRunner](external-runner.md) with `format: iceberg` and `catalog: tiozin`.
 - **Refined jobs** run inside a Databricks cluster through [DatabricksConnectRunner](connect-runner.md). They read the tables written by the ingestion jobs and write new ones.
 
 Run the ingestion jobs of a scenario before its refined jobs, which read the tables they write.
@@ -70,9 +70,9 @@ A two-step pipeline split across three jobs: raw ingestion for customers and ord
 
 | File | What it shows |
 |---|---|
-| [`ecommerce/ingestion_customer_job.yaml`](../examples/jobs/ecommerce/ingestion_customer_job.yaml) | CSV ingestion with `SparkFileInput`, ingestion metadata added with `SparkSqlTransform`, and output to `data_platform.default.raw_storefront_customers` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `day(created_at)` |
-| [`ecommerce/ingestion_orders_job.yaml`](../examples/jobs/ecommerce/ingestion_orders_job.yaml) | Same ingestion pattern for orders, written to `data_platform.default.raw_storefront_orders` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `days(created_at)` |
-| [`ecommerce/refined_orders_job.yaml`](../examples/jobs/ecommerce/refined_orders_job.yaml) | Both raw tables read with `SparkTableInput`, joined in SQL, chained transforms with `@data`, a parameterized query with `args:`, and output to `data_platform.default.refined_storefront_high_value_orders` with `mode: truncate`, partitioned by `days(created_at)` |
+| [`ecommerce/ingestion_customer_job.yaml`](../examples/jobs/ecommerce/ingestion_customer_job.yaml) | CSV ingestion with `SparkFileInput`, ingestion metadata added with `SparkSqlTransform`, and output to `tiozin.default.raw_storefront_customers` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `days(created_at)` |
+| [`ecommerce/ingestion_orders_job.yaml`](../examples/jobs/ecommerce/ingestion_orders_job.yaml) | Same ingestion pattern for orders, written to `tiozin.default.raw_storefront_orders` with `mode: merge`, `merge_keys: id`, and `merge_exclude_fields: [created_at, _raw_created_at]`, partitioned by `days(created_at)` |
+| [`ecommerce/refined_orders_job.yaml`](../examples/jobs/ecommerce/refined_orders_job.yaml) | Both raw tables read with `SparkTableInput`, joined in SQL, chained transforms with `@data`, a parameterized query with `args:`, and output to `tiozin.default.refined_storefront_high_value_orders` with `mode: truncate`, partitioned by `days(created_at)` |
 
 Run both ingestion jobs before `refined_orders_job.yaml`:
 
@@ -88,8 +88,8 @@ A multi-job pipeline using works of Shakespeare as the source dataset. An ingest
 
 | File | What it shows |
 |---|---|
-| [`shakespeare/ingestion_job.yaml`](../examples/jobs/shakespeare/ingestion_job.yaml) | Text ingestion from `examples/data/shakespeare` with `SparkFileInput`, `format: text`, and `explode_filepath: true`, written to `data_platform.default.raw_shakespeare_shakespeare` with `mode: overwrite`, partitioned by `filestem` |
-| [`shakespeare/refined_hamlet_job.yaml`](../examples/jobs/shakespeare/refined_hamlet_job.yaml) | Raw table read with `SparkTableInput`, Hamlet selected by `filestem` with `SparkSqlTransform`, word count with `SparkWordCountTransform`, and output to `data_platform.default.refined_shakespeare_hamlet` with `mode: truncate` |
+| [`shakespeare/ingestion_job.yaml`](../examples/jobs/shakespeare/ingestion_job.yaml) | Text ingestion from `examples/data/shakespeare` with `SparkFileInput`, `format: text`, and `explode_filepath: true`, written to `tiozin.default.raw_shakespeare_shakespeare` with `mode: overwrite`, partitioned by `filestem` |
+| [`shakespeare/refined_hamlet_job.yaml`](../examples/jobs/shakespeare/refined_hamlet_job.yaml) | Raw table read with `SparkTableInput`, Hamlet selected by `filestem` with `SparkSqlTransform`, word count with `SparkWordCountTransform`, and output to `tiozin.default.refined_shakespeare_hamlet` with `mode: truncate` |
 | [`shakespeare/refined_sonnets_job.yaml`](../examples/jobs/shakespeare/refined_sonnets_job.yaml) | Word count of the Sonnets |
 | [`shakespeare/refined_kinglear_job.yaml`](../examples/jobs/shakespeare/refined_kinglear_job.yaml) | Word count of King Lear |
 | [`shakespeare/refined_loverscomplaint_job.yaml`](../examples/jobs/shakespeare/refined_loverscomplaint_job.yaml) | Word count of A Lover's Complaint |

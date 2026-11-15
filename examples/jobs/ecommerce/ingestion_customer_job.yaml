@@ -8,7 +8,7 @@ owner: data@tiozin.com
 maintainer: tiozin
 cost_center: tio_scrooge
 labels:
-  catalog: data_platform
+  catalog: tiozin
 
 org: tiozin
 region: eu
@@ -21,7 +21,7 @@ model: customers
 runner:
   kind: DatabricksExternalRunner
   format: iceberg
-  catalog: data_platform
+  catalog: tiozin
   host: "{{ ENV.DATABRICKS_HOST }}"
   client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
   client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
@@ -55,11 +55,11 @@ outputs:
   - kind: SparkTableOutput
     name: save_customers
     description: Raw customer data as a Unity Catalog managed table.
-    table: data_platform.default.{{layer}}_{{product}}_{{model}}
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
     format: iceberg
     mode: merge
     merge_keys: id
     merge_exclude_fields:
       - created_at
       - _{{layer}}_created_at
-    partition_by: day(created_at)
+    partition_by: days(created_at)

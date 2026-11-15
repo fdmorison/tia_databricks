@@ -59,14 +59,14 @@ See the [Databricks documentation on external access to Unity Catalog](https://d
 
 The catalog named in `catalog` becomes the default catalog of the session. Steps can refer to tables as `schema.table` or `catalog.schema.table`.
 
-With `catalog: data_platform`, an output can name its table either way:
+With `catalog: tiozin`, an output can name its table either way:
 
 ```yaml
 outputs:
   - kind: SparkTableOutput
     name: save_customers
     table: default.raw_storefront_customers
-    # same table as data_platform.default.raw_storefront_customers
+    # same table as tiozin.default.raw_storefront_customers
 ```
 
 ## Choosing the Table Format
@@ -78,7 +78,7 @@ To write [Apache Iceberg](https://iceberg.apache.org/) tables, set `format: iceb
 ```yaml
 runner:
   kind: DatabricksExternalRunner
-  catalog: data_platform
+  catalog: tiozin
   host: "{{ ENV.DATABRICKS_HOST }}"
   client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
   client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
@@ -87,7 +87,7 @@ runner:
 outputs:
   - kind: SparkTableOutput
     name: save_customers
-    table: data_platform.default.raw_storefront_customers
+    table: tiozin.default.raw_storefront_customers
     format: iceberg
     mode: merge
     merge_keys: id
@@ -106,7 +106,7 @@ Extra keys in the runner block go to [SparkRunner](https://github.com/fdmorison/
 ```yaml
 runner:
   kind: DatabricksExternalRunner
-  catalog: data_platform
+  catalog: tiozin
   host: "{{ ENV.DATABRICKS_HOST }}"
   client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
   client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
