@@ -1,0 +1,29 @@
+name: PR Code
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "tia_databricks/**/*.py"
+      - "tests/**/*.py"
+      - "pyproject.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  code:
+    if: ${{ !startsWith(github.head_ref, 'release-please--') }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Setup environment
+        uses: fdmorison/tiozin/.github/actions/setup-env@main
+
+      - name: Install Dependencies
+        run: make install-dev
+
+      - name: Lint
+        run: make check
+
+      - name: Tests
+        run: make test
