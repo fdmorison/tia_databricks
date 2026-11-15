@@ -44,8 +44,9 @@ runner = DatabricksConnectRunner(
 
 ## Before Running a Job
 
-The runner needs a cluster it can reach and attach to:
+The runner needs Databricks Connect installed and a cluster it can reach and attach to:
 
+- `tia_databricks` must be installed with the `connect` extra.
 - The cluster must be running, or be able to start.
 - The service principal must be allowed to attach to the cluster.
 - The installed `databricks-connect` version must match the cluster's Databricks Runtime version.
@@ -58,10 +59,10 @@ Databricks Connect requests and refreshes the access token itself, so long-runni
 
 ## Matching the Databricks Connect Version
 
-`tia_databricks` accepts `databricks-connect` versions from 15.4 up to, but not including, 17.0. Within that range, pin the release that matches the cluster's Databricks Runtime. For a cluster on Databricks Runtime 15.4:
+The `connect` extra accepts `databricks-connect` versions from 15.4 up to, but not including, 17.0. Within that range, pin the release that matches the cluster's Databricks Runtime. For a cluster on Databricks Runtime 15.4:
 
 ```bash
-pip install tia_databricks "databricks-connect==15.4.*"
+pip install "tia_databricks[connect]" "databricks-connect==15.4.*"
 ```
 
 ## Passing Spark Config Options
