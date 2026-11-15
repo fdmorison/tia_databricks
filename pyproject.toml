@@ -42,7 +42,6 @@ test = [
   "pytest ==8.4.2",
   "pytest-cov ==7.0.0",
   "assertpy ==1.1",
-  "databricks-connect >=15.4.0,<17.0.0",
 ]
 lint = [
   "ruff ==0.14.10",
