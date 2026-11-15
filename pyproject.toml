@@ -42,11 +42,16 @@ test = [
   "pytest ==8.4.2",
   "pytest-cov ==7.0.0",
   "assertpy ==1.1",
-  "tia_databricks[connect]",
 ]
 lint = [
   "ruff ==0.14.10",
   "pre-commit ==4.3.0",
+]
+spark = [
+  "tia_databricks[tio_spark]",
+]
+connect = [
+  "tia_databricks[connect]",
 ]
 
 [project.entry-points."tiozin.family"]

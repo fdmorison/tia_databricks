@@ -8,14 +8,24 @@ hooks:
 	@uv run pre-commit install
 
 install:
+	@rm -rf .venv
 	@uv sync
 	@uv pip install -e .
 
 install-dev:
+	@rm -rf .venv
 	@uv sync --all-groups
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info
+
+install-spark:
+	@rm -rf .venv
+	@uv sync --group spark
+
+install-connect:
+	@rm -rf .venv
+	@uv sync --group connect
 
 format:
 	@uv run ruff format

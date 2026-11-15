@@ -3822,23 +3822,27 @@ tio-spark = [
 ]
 
 [package.dev-dependencies]
+connect = [
+    { name = "tia-databricks", extra = ["connect"] },
+]
 dev = [
     { name = "assertpy" },
     { name = "pre-commit" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "ruff" },
-    { name = "tia-databricks", extra = ["connect"] },
 ]
 lint = [
     { name = "pre-commit" },
     { name = "ruff" },
 ]
+spark = [
+    { name = "tia-databricks", extra = ["tio-spark"] },
+]
 test = [
     { name = "assertpy" },
     { name = "pytest" },
     { name = "pytest-cov" },
-    { name = "tia-databricks", extra = ["connect"] },
 ]
 
 [package.metadata]
@@ -3852,23 +3856,23 @@ requires-dist = [
 provides-extras = ["tio-spark", "connect"]
 
 [package.metadata.requires-dev]
+connect = [{ name = "tia-databricks", extras = ["connect"] }]
 dev = [
     { name = "assertpy", specifier = "==1.1" },
     { name = "pre-commit", specifier = "==4.3.0" },
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
     { name = "ruff", specifier = "==0.14.10" },
-    { name = "tia-databricks", extras = ["connect"] },
 ]
 lint = [
     { name = "pre-commit", specifier = "==4.3.0" },
     { name = "ruff", specifier = "==0.14.10" },
 ]
+spark = [{ name = "tia-databricks", extras = ["tio-spark"] }]
 test = [
     { name = "assertpy", specifier = "==1.1" },
     { name = "pytest", specifier = "==8.4.2" },
     { name = "pytest-cov", specifier = "==7.0.0" },
-    { name = "tia-databricks", extras = ["connect"] },
 ]
 
 [[package]]
