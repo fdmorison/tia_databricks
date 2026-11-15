@@ -40,6 +40,7 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-24.04
+    environment: prod
     outputs:
       released: ${{ steps.rp.outputs.release_created }}
       tag: ${{ steps.rp.outputs.tag_name }}
@@ -64,6 +65,7 @@ jobs:
     needs: [build, release]
     if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-24.04
+    environment: prod
     steps:
       - name: Checkout
         uses: actions/checkout@v6
