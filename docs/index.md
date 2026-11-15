@@ -24,6 +24,10 @@ The two extras cannot be combined. Databricks Connect ships its own PySpark, so 
 
 - [DatabricksConnectRunner](connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
 
+## Examples
+
+[Examples](examples.md) lists the example jobs in this repository, which ingest and refine Unity Catalog tables.
+
 ## Working With tio_spark
 
 [DatabricksConnectRunner](connect-runner.md) extends [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md) from the [tio_spark](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/index.md) family, so it executes the Spark plans produced by `tio_spark` steps. The `tio_spark` steps ship inside the `tiozin` package.

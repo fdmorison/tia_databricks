@@ -56,5 +56,6 @@ The [family documentation](https://github.com/fdmorison/tia_databricks/blob/main
 
 ## Learn More
 
+- [Examples](https://github.com/fdmorison/tia_databricks/blob/main/docs/examples.md)
 - [Tiozin](https://github.com/fdmorison/tiozin)
 - [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/)
