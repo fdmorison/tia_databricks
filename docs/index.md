@@ -12,10 +12,10 @@ To run jobs on a Databricks cluster, install the `connect` extra. It installs [D
 pip install "tia_databricks[connect]"
 ```
 
-To run Spark locally, install the `spark` extra. It installs `tiozin[tio_spark]`, which brings a local PySpark. With only this extra, the family currently provides no plugins:
+To run Spark locally, install the `tio_spark` extra. It installs `tiozin[tio_spark]`, which brings a local PySpark. With only this extra, the family currently provides no plugins:
 
 ```bash
-pip install "tia_databricks[spark]"
+pip install "tia_databricks[tio_spark]"
 ```
 
 The two extras cannot be combined. Databricks Connect ships its own PySpark, so the `connect` extra must go in an environment without `tiozin[tio_spark]` or a separate `pyspark` package.
@@ -28,4 +28,4 @@ The two extras cannot be combined. Databricks Connect ships its own PySpark, so 
 
 [DatabricksConnectRunner](connect-runner.md) extends [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md) from the [tio_spark](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/index.md) family, so it executes the Spark plans produced by `tio_spark` steps. The `tio_spark` steps ship inside the `tiozin` package.
 
-With the `connect` extra, Databricks Connect provides the PySpark those steps run on. With the `spark` extra, `tiozin[tio_spark]` provides it.
+With the `connect` extra, Databricks Connect provides the PySpark those steps run on. With the `tio_spark` extra, `tiozin[tio_spark]` provides it.

@@ -25,7 +25,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-spark = [
+tio_spark = [
   "tiozin[tio_spark] >=4.0.0,<5.0.0",
 ]
 connect = [
@@ -59,7 +59,7 @@ Issues = "https://github.com/fdmorison/tia_databricks/issues"
 required-version = ">=0.8.1"
 # databricks-connect ships its own pyspark and cannot be installed alongside tiozin[tio_spark]
 conflicts = [
-  [{ extra = "spark" }, { extra = "connect" }],
+  [{ extra = "tio_spark" }, { extra = "connect" }],
 ]
 
 [[tool.uv.index]]
