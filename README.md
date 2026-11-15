@@ -14,7 +14,7 @@ To run jobs on a Databricks cluster, install the `connect` extra. It installs [D
 pip install "tia_databricks[connect]"
 ```
 
-To run Spark locally, install the `tio_spark` extra. It installs `tiozin[tio_spark]`, which brings a local PySpark. With only this extra, the family currently provides no plugins:
+To run Spark locally, install the `tio_spark` extra. It installs `tiozin[tio_spark]`, which brings the local PySpark that [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md) runs on:
 
 ```bash
 pip install "tia_databricks[tio_spark]"
@@ -51,6 +51,7 @@ runner:
 ## Plugins
 
 - [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
+- [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark` extra.
 
 The [family documentation](https://github.com/fdmorison/tia_databricks/blob/main/docs/index.md) lists every plugin page.
 
