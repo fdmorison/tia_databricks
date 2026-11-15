@@ -9,9 +9,11 @@ All other modules and classes inside this package are internal implementation
 details and may change without notice.
 """
 
-# Runners
-from .runners.connect_runner import DatabricksConnectRunner
+__all__ = []
 
-__all__ = [
-    "DatabricksConnectRunner",
-]
+try:
+    from .runners.connect_runner import DatabricksConnectRunner
+
+    __all__ += ["DatabricksConnectRunner"]
+except ImportError:
+    pass
