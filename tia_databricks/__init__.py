@@ -9,11 +9,11 @@ All other modules and classes inside this package are internal implementation
 details and may change without notice.
 """
 
+from contextlib import suppress
+
 __all__ = []
 
-try:
+with suppress(ImportError):
     from .runners.connect_runner import DatabricksConnectRunner
 
     __all__ += ["DatabricksConnectRunner"]
-except ImportError:
-    pass
