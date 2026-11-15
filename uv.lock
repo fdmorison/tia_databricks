@@ -2311,6 +2311,17 @@ wheels = [
 ]
 
 [[package]]
+name = "openlineage-sql"
+version = "1.45.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/17/5b/766d294e699871c4c831ee4741e81ecf2b03affe761bb7803233259cb654/openlineage_sql-1.45.0.tar.gz", hash = "sha256:a6707a3b604b028a4350e7fe703360852a777d4d54ac8b1fa0e7873a5ed2227a", size = 40389, upload-time = "2026-03-11T15:40:12.266Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1d/f0/50afa3f02b28af18974fe8ecf17f9382c50c4cee557f38823240e3a3c9e5/openlineage_sql-1.45.0-cp39-abi3-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl", hash = "sha256:a9ee32250f051433cd63ad38afa4156781f92b893a8bd0ce0b15036ccedcc4d3", size = 4895465, upload-time = "2026-03-11T15:40:08.26Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/14/6724b3948f58dcd80bf1a0b68927680de0ee2fa71a3349262b36e4b52540/openlineage_sql-1.45.0-cp39-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:5dfb07b2ec7e89363ebac65b35b5ad5e0368d84669f156652b348b1993ae4346", size = 2446317, upload-time = "2026-03-11T15:40:09.931Z" },
+    { url = "https://files.pythonhosted.org/packages/10/6f/1d167ed8d2254c7a650aa4729390b54da3f92639dd7f5addaddf3df1a7a8/openlineage_sql-1.45.0-cp39-abi3-manylinux_2_28_x86_64.whl", hash = "sha256:44612c3632f614cdee9d46b2c889453bd04d95c82764d75df6667bc90ff3cf40", size = 2611656, upload-time = "2026-03-11T15:40:11.01Z" },
+]
+
+[[package]]
 name = "opentelemetry-api"
 version = "1.45.2"
 source = { registry = "https://pypi.org/simple" }
@@ -3104,6 +3115,16 @@ dependencies = [
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/95/ce/81e53e729790556e3983e95de1a7d5df91a34adfcd34b5a5ab0e0c6e9b33/pyspark-3.5.9.tar.gz", hash = "sha256:ea27adc39ddac9413b8951e45aa748cbed6c785971b81386efc41938f6243d93", size = 317858593, upload-time = "2026-07-16T08:52:04.494Z" }
 
+[package.optional-dependencies]
+connect = [
+    { name = "googleapis-common-protos" },
+    { name = "grpcio" },
+    { name = "grpcio-status" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "pyarrow" },
+]
+
 [[package]]
 name = "pytest"
 version = "8.4.2"
@@ -3824,9 +3845,9 @@ test = [
 requires-dist = [
     { name = "databricks-connect", marker = "extra == 'connect'", specifier = ">=15.4.0,<17.0.0" },
     { name = "databricks-sdk", specifier = "~=0.102.0" },
-    { name = "tiozin", extras = ["tio-kernel"], specifier = ">=4.0.0,<5.0.0" },
-    { name = "tiozin", extras = ["tio-spark"], marker = "extra == 'tio-spark'", specifier = ">=4.0.0,<5.0.0" },
-    { name = "tiozin", extras = ["tio-spark-base"], marker = "extra == 'connect'", specifier = ">=4.0.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-kernel"], specifier = ">=4.1.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-spark"], marker = "extra == 'tio-spark'", specifier = ">=4.1.0,<5.0.0" },
+    { name = "tiozin", extras = ["tio-spark-base"], marker = "extra == 'connect'", specifier = ">=4.1.0,<5.0.0" },
 ]
 provides-extras = ["tio-spark", "connect"]
 
@@ -3852,7 +3873,7 @@ test = [
 
 [[package]]
 name = "tiozin"
-version = "4.0.0"
+version = "4.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "datacontract-cli" },
@@ -3861,6 +3882,7 @@ dependencies = [
     { name = "inflection" },
     { name = "jinja2" },
     { name = "openlineage-python" },
+    { name = "openlineage-sql" },
     { name = "pendulum" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
@@ -3874,9 +3896,9 @@ dependencies = [
     { name = "uuid-utils" },
     { name = "wrapt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/41/e9/94a77d9f07c71e731d34bb09f4e68ec091945f13dcb2ef8b9a3f8f0c485b/tiozin-4.0.0.tar.gz", hash = "sha256:bf861a35c74c0266bbcd7fb20a361f82df1ad6708e32ea9174070faf6fa453f4", size = 129873, upload-time = "2026-08-01T05:03:55.987Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/8e/577d9ff8f4ae37c6b0cbdf9b654ea61b04c9aef63cc4a65c2241411bfd38/tiozin-4.1.0.tar.gz", hash = "sha256:082d72ae540bbd67965fe5de750b48cf903c7db900d1c3cbda9c0befa65f2688", size = 139724, upload-time = "2026-11-15T21:07:38.755Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9b/02/6c1d615648e03aa9881a0846ad166f3f6d9e098e2bdd782cabe2505163d7/tiozin-4.0.0-py3-none-any.whl", hash = "sha256:9ab2ba9b1fcc899706279b1472e9b72b376dbb24c1499a5f0c85a749409c358d", size = 199108, upload-time = "2026-08-01T05:03:54.726Z" },
+    { url = "https://files.pythonhosted.org/packages/ce/98/f3b1d258663c3bcde91a33cb250cb160b82adc6cc098859408b5e62a7cf8/tiozin-4.1.0-py3-none-any.whl", hash = "sha256:735ef602d0ec353426dbf868706be1e8e316dd351a72b34211993563ce860398", size = 212905, upload-time = "2026-11-15T21:07:37.476Z" },
 ]
 
 [package.optional-dependencies]
@@ -3887,7 +3909,7 @@ tio-kernel = [
 ]
 tio-spark = [
     { name = "databricks-sdk" },
-    { name = "pyspark" },
+    { name = "pyspark", extra = ["connect"] },
 ]
 
 [[package]]
