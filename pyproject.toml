@@ -1,6 +1,6 @@
 [project]
 name = "tia_databricks"
-version = "0.0.0"
+version = "0.1.0"
 description = "Databricks family for Tiozin, your friendly ETL framework"
 readme = "README.md"
 requires-python = ">=3.11"
