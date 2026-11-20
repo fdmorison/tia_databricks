@@ -3406,7 +3406,6 @@ source = { editable = "." }
 dependencies = [
     { name = "databricks-sdk" },
     { name = "tio-spark" },
-    { name = "tiozin" },
 ]
 
 [package.optional-dependencies]
@@ -3443,10 +3442,9 @@ test = [
 requires-dist = [
     { name = "databricks-connect", marker = "extra == 'connect'", specifier = ">=15.4.0,<17.0.0" },
     { name = "databricks-sdk", specifier = ">=0.102.0" },
-    { name = "tio-spark", specifier = ">=0.1.1" },
+    { name = "tio-spark", specifier = ">=0.1.2" },
     { name = "tio-spark", extras = ["pyspark35"], marker = "extra == 'tio-spark35'" },
     { name = "tio-spark", extras = ["pyspark40"], marker = "extra == 'tio-spark40'" },
-    { name = "tiozin", specifier = ">=5.0.0" },
 ]
 provides-extras = ["tio-spark35", "tio-spark40", "connect"]
 
@@ -3470,14 +3468,14 @@ test = [
 
 [[package]]
 name = "tio-spark"
-version = "0.1.1"
+version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "tiozin" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/92/41/1b77c54a52bb6bb71a0278fafc0d8a2a2d376635feac693689586ab43dd3/tio_spark-0.1.1.tar.gz", hash = "sha256:a2386651d0d707418293e6960f844b386e3a5639afeefc4816414aa318bf3bc4", size = 31466, upload-time = "2026-11-20T18:39:59.697Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/42/92/f4d3531e5afed0adde4663b2b27cd75b2df86d8df9c202bd5ea9f81d9feb/tio_spark-0.1.2.tar.gz", hash = "sha256:3c9103bd0b708a1c7cf0e4171d3a963a226c53e03cf229cb25ea9548dd39923e", size = 31472, upload-time = "2026-11-20T22:29:28.695Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/74/0e/2f69744e5ec852d56214bf0b8aec7638a81ed240a3cdd700b212db6bf518/tio_spark-0.1.1-py3-none-any.whl", hash = "sha256:8054d26d4c8ba958d4918e71fc643825d26885ecb274bfe71dfb88e4b15b9b75", size = 40840, upload-time = "2026-11-20T18:39:58.631Z" },
+    { url = "https://files.pythonhosted.org/packages/37/f6/afc21cbeecf986a6ad6637bf70b25432f67adfab0ef8922c9fde2344f376/tio_spark-0.1.2-py3-none-any.whl", hash = "sha256:2e074ddafa6a3e1621b40da7ca9da3d89dd332f7ae97742d2569bd77a273b323", size = 40840, upload-time = "2026-11-20T22:29:27.763Z" },
 ]
 
 [package.optional-dependencies]
