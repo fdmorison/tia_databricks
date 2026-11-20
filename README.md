@@ -4,6 +4,28 @@
 
 A family is an installable package of Tiozin plugins that share the same runtime. See [The Family Model](https://github.com/fdmorison/tiozin/blob/main/docs/concepts/family.md) for how families fit into Tiozin.
 
+## Usage
+
+Tiozin discovers the family automatically through the `tiozin.family` entry point. The family is registered as `tia_databricks`, and its Python package is `tia_databricks`.
+
+After installation, its plugins are available by class name in any job:
+
+```yaml
+runner:
+  kind: DatabricksExternalRunner
+  catalog: my_catalog
+```
+
+If another installed family defines a class with the same name, qualify the kind with the family name:
+
+```yaml
+runner:
+  kind: tia_databricks:DatabricksExternalRunner
+  catalog: my_catalog
+```
+
+Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
+
 ## Installation
 
 The package requires Python 3.11 or later and installs Tiozin 4.x as a dependency. It comes with two extras, one for each place where Spark runs.
@@ -67,28 +89,6 @@ Each runner also has requirements on the Databricks side, such as a cluster that
 
 - [Before running a job with DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md#before-running-a-job)
 - [Before running a job with DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md#before-running-a-job)
-
-## Usage
-
-Tiozin discovers the family automatically through the `tiozin.family` entry point. The family is registered as `tia_databricks`, and its Python package is `tia_databricks`.
-
-After installation, its plugins are available by class name in any job:
-
-```yaml
-runner:
-  kind: DatabricksExternalRunner
-  catalog: my_catalog
-```
-
-If another installed family defines a class with the same name, qualify the kind with the family name:
-
-```yaml
-runner:
-  kind: tia_databricks:DatabricksExternalRunner
-  catalog: my_catalog
-```
-
-Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
 
 ## Plugins
 
