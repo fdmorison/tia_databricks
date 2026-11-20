@@ -52,7 +52,13 @@ Tiozin reads its settings from `tiozin.yaml` in the current directory. The repos
    cp tiozin.example.yaml tiozin.yaml
    ```
 
-2. Export the environment variables that the settings read, in the shell that runs the job:
+2. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Fill in the Databricks variables in `.env`:
 
    - `DATABRICKS_HOST`: the Databricks workspace URL.
    - `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
@@ -60,11 +66,15 @@ Tiozin reads its settings from `tiozin.yaml` in the current directory. The repos
    - `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only DatabricksConnectRunner uses it.
 
    ```bash
-   export DATABRICKS_HOST="https://my-workspace.cloud.databricks.com"
-   export DATABRICKS_CLIENT_ID="my-client-id"
-   export DATABRICKS_CLIENT_SECRET="my-client-secret"
-   export DATABRICKS_CLUSTER_ID="0123-456789-abcdefgh"
+   DATABRICKS_HOST=https://my-workspace.cloud.databricks.com
+   DATABRICKS_CLIENT_ID=my-client-id
+   DATABRICKS_CLIENT_SECRET=my-client-secret
+   DATABRICKS_CLUSTER_ID=0123-456789-abcdefgh
    ```
+
+   The file also sets `SPARK_HOME` and `SPARK_LOCAL_IP` for local Spark.
+
+Variables already set in the shell work too, and they take precedence over `.env`.
 
 To use the example settings without copying them, pass them with the `--settings-path` option:
 
