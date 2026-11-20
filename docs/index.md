@@ -2,12 +2,12 @@
 
 `tia_databricks` is the Tiozin family for [Databricks](https://docs.databricks.com/). A family is an installable package of Tiozin plugins that share the same runtime. See [The Family Model](https://github.com/fdmorison/tiozin/blob/main/docs/concepts/family.md) for how families fit into Tiozin.
 
-[Installation](installation.md) covers the two extras and how to add the package to a project. [Getting Started](getting-started.md) sets up the example settings and the Databricks workspace.
+[Installation](installation.md) covers the extras and how to add the package to a project. [Getting Started](getting-started.md) sets up the example settings and the Databricks workspace.
 
 ## Plugins
 
 - [DatabricksConnectRunner](connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
-- [DatabricksExternalRunner](external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark` extra.
+- [DatabricksExternalRunner](external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark35` or `tio_spark40` extra, or a separately installed PySpark.
 
 ## Using the Plugins in a Job
 
@@ -49,6 +49,6 @@ Each runner page explains how it applies them: [DatabricksConnectRunner](connect
 
 ## Working With tio_spark
 
-[DatabricksConnectRunner](connect-runner.md) extends [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md) from the [tio_spark](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/index.md) family, so it executes the Spark plans produced by `tio_spark` steps. The `tio_spark` steps ship inside the `tiozin` package.
+[DatabricksConnectRunner](connect-runner.md) extends [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md) from the [tio_spark](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md) family, so it executes the Spark plans produced by `tio_spark` steps. The `tio_spark` steps ship in the `tio_spark` package, which `tia_databricks` installs.
 
-With the `connect` extra, Databricks Connect provides the PySpark those steps run on. With the `tio_spark` extra, `tiozin[tio_spark]` provides it.
+With the `connect` extra, Databricks Connect provides the PySpark those steps run on. With the `tio_spark35` or `tio_spark40` extra, `tio_spark[pyspark35]` or `tio_spark[pyspark40]` provides it. Without an extra, `tia_databricks` installs no PySpark, so the environment provides it.

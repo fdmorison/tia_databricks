@@ -5,7 +5,7 @@
 ## One-Minute Example
 
 ```bash
-pip install "tia_databricks[tio_spark]"
+pip install "tia_databricks[tio_spark35]"
 ```
 
 This job loads the text of Hamlet into a Unity Catalog table with [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md):
@@ -56,7 +56,7 @@ tiozin run examples/jobs/oneminute.yaml
 ## Plugins
 
 - [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
-- [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark` extra.
+- [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark35` or `tio_spark40` extra, or a separately installed PySpark.
 
 ## Documentation
 

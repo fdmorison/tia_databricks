@@ -2,7 +2,7 @@
 
 Runs Tiozin jobs inside a Databricks cluster through [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/). The job is planned locally and executed by the cluster, so steps read and write [Unity Catalog](https://docs.databricks.com/aws/en/data-governance/unity-catalog/) tables from inside Databricks, with the access and features of the cluster.
 
-The runner extends [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md). During setup, it connects to the cluster and opens a Spark session there. During teardown, it stops that session.
+The runner extends [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md). During setup, it connects to the cluster and opens a Spark session there. During teardown, it stops that session.
 
 ```yaml
 runner:
@@ -84,7 +84,7 @@ The runner sets `spark.sql.session.timeZone` to UTC before applying these option
 ## Related
 
 - [tia_databricks family](index.md)
-- [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md)
-- [tio_spark family](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/index.md)
+- [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md)
+- [tio_spark family](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md)
 - [Runners](https://github.com/fdmorison/tiozin/blob/main/docs/concepts/runners.md)
 - [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/)

@@ -1,12 +1,12 @@
 # Installation
 
-`tia_databricks` is installed as a Python dependency. It requires Python 3.11 or later and installs Tiozin 4.1 or a later 4.x release. Tiozin discovers the family automatically, so its plugins are available by class name in job YAML right after installation.
+`tia_databricks` is installed as a Python dependency. It requires Python 3.11 or later and installs [tio_spark](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md), which brings Tiozin 4.1 or later. Tiozin discovers the family automatically, so its plugins are available by class name in job YAML right after installation.
 
-The package provides two extras, `connect` and `tio_spark`, and a project installs only one of them, depending on where Spark runs.
+The package installs `tio_spark` without PySpark. Its extras add what each place Spark runs needs: `connect` for a Databricks cluster, and `tio_spark35` or `tio_spark40` for the local machine.
 
 ## Running Spark on a Databricks Cluster
 
-The `connect` extra is for running Spark on a Databricks cluster with [DatabricksConnectRunner](connect-runner.md). It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/).
+The `connect` extra is for running Spark on a Databricks cluster with [DatabricksConnectRunner](connect-runner.md). It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/), which ships its own PySpark.
 
 ```bash
 pip install "tia_databricks[connect]"
@@ -16,19 +16,46 @@ The installed Databricks Connect version must match the cluster's Databricks Run
 
 ## Running Spark Locally
 
-The `tio_spark` extra is for running Spark on the local machine with [DatabricksExternalRunner](external-runner.md). It installs `tiozin[tio_spark]`, which brings [PySpark](https://spark.apache.org/docs/latest/api/python/).
+[DatabricksExternalRunner](external-runner.md) runs Spark on the local machine, so it needs [PySpark](https://spark.apache.org/docs/latest/api/python/) installed there. Two extras bring a pinned PySpark line:
+
+- `tio_spark35`: installs `tio_spark[pyspark35]`, with PySpark 3.5.x.
+- `tio_spark40`: installs `tio_spark[pyspark40]`, with PySpark 4.0.x.
 
 ```bash
-pip install "tia_databricks[tio_spark]"
+pip install "tia_databricks[tio_spark35]"
 ```
+
+## Using a Separately Installed PySpark
+
+Without an extra, the package installs `tio_spark` without PySpark. This plain install fits environments that already provide PySpark or that pin their own PySpark version.
+
+```bash
+pip install tia_databricks
+```
+
+If the environment does not provide PySpark yet, install it alongside the package before running [DatabricksExternalRunner](external-runner.md).
 
 ## Keeping the Extras Apart
 
-The two extras cannot be combined. Databricks Connect ships its own PySpark, so install `connect` in an environment without `tiozin[tio_spark]` or a separate `pyspark` package.
+`tio_spark35` and `tio_spark40` cannot be combined.
+
+`connect` cannot be combined with `tio_spark35` or `tio_spark40`. Install it in an environment without a separate `pyspark` package as well.
+
+## Matching Tiozin and tio_spark
+
+The install options mirror the ones in Tiozin and `tio_spark`:
+
+| tia_databricks | Tiozin | tio_spark |
+|---|---|---|
+| `tia_databricks` | `tiozin[tio_spark]` | `tio_spark` |
+| `tia_databricks[tio_spark35]` | `tiozin[tio_spark35]` | `tio_spark[pyspark35]` |
+| `tia_databricks[tio_spark40]` | `tiozin[tio_spark40]` | `tio_spark[pyspark40]` |
+
+See the [tio_spark installation guide](https://github.com/fdmorison/tio_spark/blob/main/docs/installation.md) for the PySpark versions behind each extra.
 
 ## Adding It to a Project
 
-Add the package with one extra to the project's dependencies, such as in `pyproject.toml`:
+Add the package to the project's dependencies, with the extra that matches where Spark runs, such as in `pyproject.toml`:
 
 ```toml
 [project]

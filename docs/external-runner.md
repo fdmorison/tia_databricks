@@ -2,7 +2,7 @@
 
 Runs Tiozin jobs on a local Spark session that reads and writes [Unity Catalog](https://docs.databricks.com/aws/en/data-governance/unity-catalog/) tables from outside Databricks. Spark runs on the machine that runs the job.
 
-The runner extends [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md). During setup, it registers the catalog in the Spark session and opens the session. During teardown, it stops that session.
+The runner extends [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md). During setup, it registers the catalog in the Spark session and opens the session. During teardown, it stops that session.
 
 ```yaml
 runner:
@@ -26,7 +26,7 @@ The `{{ ENV.NAME }}` syntax reads environment variables at runtime. See [Templat
 | `client_secret` | Yes | | Client secret of the service principal |
 | `scope` | No | `unity-catalog` | OAuth scope requested with the token |
 | `format` | No | `delta` | Table format of the session, `delta` or `iceberg` |
-| `**options` | No | | Additional arguments accepted by [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md), including Spark configuration options |
+| `**options` | No | | Additional arguments accepted by [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md), including Spark configuration options |
 
 If any required parameter is missing or empty, creating the runner fails with a `RequiredArgumentError`.
 
@@ -49,7 +49,7 @@ runner = DatabricksExternalRunner(
 
 The runner needs a local PySpark and a metastore that accepts access from outside Databricks:
 
-- `tia_databricks` must be installed with the `tio_spark` extra.
+- `tia_databricks` must be installed with the `tio_spark35` or `tio_spark40` extra, or alongside a separately installed PySpark. See [Installation](installation.md#running-spark-locally).
 - The target metastore must have external access enabled.
 - The service principal must hold the `EXTERNAL USE SCHEMA` grant on the target schema.
 
@@ -71,7 +71,7 @@ outputs:
 
 ## Choosing the Table Format
 
-A session works with one table format at a time, so pair the runner's `format` with outputs that write the same format. The runner defaults to `delta`, while [SparkTableOutput](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/table-output.md) defaults to `iceberg`. With the runner default, set `format: delta` on each output.
+A session works with one table format at a time, so pair the runner's `format` with outputs that write the same format. The runner defaults to `delta`, while [SparkTableOutput](https://github.com/fdmorison/tio_spark/blob/main/docs/table-output.md) defaults to `iceberg`. With the runner default, set `format: delta` on each output.
 
 To write [Apache Iceberg](https://iceberg.apache.org/) tables, set `format: iceberg` on the runner. Spark then reaches Unity Catalog through its Iceberg REST catalog. See the [Databricks documentation on Iceberg clients](https://docs.databricks.com/aws/en/external-access/iceberg).
 
@@ -101,7 +101,7 @@ The catalog client requests and refreshes the access token itself, so long-runni
 
 ## Passing Spark Config Options
 
-Extra keys in the runner block go to [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md), which sets them on the session as [Spark configuration](https://spark.apache.org/docs/latest/configuration.html) options.
+Extra keys in the runner block go to [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md), which sets them on the session as [Spark configuration](https://spark.apache.org/docs/latest/configuration.html) options.
 
 ```yaml
 runner:
@@ -117,7 +117,7 @@ runner:
 
 - [tia_databricks family](index.md)
 - [DatabricksConnectRunner](connect-runner.md)
-- [SparkRunner](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/runner.md)
-- [tio_spark family](https://github.com/fdmorison/tiozin/blob/main/docs/tio_spark/index.md)
+- [SparkRunner](https://github.com/fdmorison/tio_spark/blob/main/docs/runner.md)
+- [tio_spark family](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md)
 - [Runners](https://github.com/fdmorison/tiozin/blob/main/docs/concepts/runners.md)
 - [Unity Catalog](https://docs.databricks.com/aws/en/data-governance/unity-catalog/)
