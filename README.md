@@ -22,6 +22,16 @@ runner:
   catalog: tiozin
 ```
 
+Spark config options go directly in the runner:
+
+```yaml
+runner:
+  kind: DatabricksExternalRunner
+  catalog: tiozin
+  spark.executor.memory: 4g
+  spark.sql.shuffle.partitions: 200
+```
+
 ## Installation
 
 `tia_databricks` is installed as a Python dependency. Once it is installed, its plugins are available in any job.
