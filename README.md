@@ -28,7 +28,7 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
 
 ## Installation
 
-`tia_databricks` is installed as a Python dependency of the project that runs the jobs. Once it is installed, its plugins are available in any job.
+`tia_databricks` is installed as a Python dependency. Once it is installed, its plugins are available in any job.
 
 The package provides two extras, `connect` and `tio_spark`, and a project installs only one of them, depending on where Spark runs.
 
