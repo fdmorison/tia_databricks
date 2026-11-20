@@ -28,23 +28,23 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
 
 ## Installation
 
-Install `tia_databricks` like any other Python library. Tiozin comes with it.
+`tia_databricks` is installed as a Python dependency of the project that runs the jobs. Once it is installed, its plugins are available in any job.
 
-Pick the extra for where Spark runs:
+The package provides two extras, `connect` and `tio_spark`, and a project installs only one of them, depending on where Spark runs.
 
-- **On a Databricks cluster**: the `connect` extra, used by [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md). It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/).
+The `connect` extra is for running Spark on a Databricks cluster with [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md). It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/).
 
-  ```bash
-  pip install "tia_databricks[connect]"
-  ```
+```bash
+pip install "tia_databricks[connect]"
+```
 
-- **On the local machine**: the `tio_spark` extra, used by [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md). It installs `tiozin[tio_spark]`, which brings PySpark.
+The `tio_spark` extra is for running Spark on the local machine with [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md). It installs `tiozin[tio_spark]`, which brings PySpark.
 
-  ```bash
-  pip install "tia_databricks[tio_spark]"
-  ```
+```bash
+pip install "tia_databricks[tio_spark]"
+```
 
-In a project, add the package to the project's dependencies instead, such as in `pyproject.toml`:
+Add it to the project's dependencies, such as in `pyproject.toml`:
 
 ```toml
 [project]
