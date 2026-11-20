@@ -21,10 +21,6 @@ layer: refined
 
 runner:
   kind: DatabricksConnectRunner
-  host: "{{ ENV.DATABRICKS_HOST }}"
-  cluster_id: "{{ ENV.DATABRICKS_CLUSTER_ID }}"
-  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
-  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
 
 inputs:
   - kind: SparkTableInput
