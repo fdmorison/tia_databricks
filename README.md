@@ -61,13 +61,13 @@ The two extras cannot be combined. Databricks Connect ships its own PySpark, so 
 
 The example settings use `runtime_defaults` to connect the runners to Databricks.
 
-1. Copy `.env.example` to `.env` at the repository root, then fill in the Databricks variables in `.env`. `.env` is gitignored.
+1. Copy the `.env.example` file to `.env` at the repository root, then fill in the Databricks variables in the `.env` file. The `.env` file is gitignored.
 
    ```bash
    cp .env.example .env
    ```
 
-2. Copy `tiozin.example.yaml` to `tiozin.yaml` at the repository root. `tiozin.yaml` is gitignored.
+2. Copy the `tiozin.example.yaml` file to `tiozin.yaml` at the repository root. The `tiozin.yaml` file is gitignored.
 
    ```bash
    cp tiozin.example.yaml tiozin.yaml
