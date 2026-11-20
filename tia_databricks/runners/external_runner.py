@@ -1,5 +1,5 @@
+from tio_spark import SparkRunner
 from tiozin.exceptions import RequiredArgumentError
-from tiozin.family.tio_spark import SparkRunner
 from tiozin.utils import default, trim, trim_lower
 
 from ..typehints import DatabricksTableFormat

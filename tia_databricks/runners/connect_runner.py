@@ -1,8 +1,8 @@
 from databricks.connect import DatabricksSession
 from databricks.sdk.core import Config
+from tio_spark import SparkRunner
 from tiozin import config
 from tiozin.exceptions import RequiredArgumentError
-from tiozin.family.tio_spark import SparkRunner
 from tiozin.utils import trim
 
 
