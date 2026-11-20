@@ -30,14 +30,16 @@ After installation, its plugins are available by class name in any job:
 
 ```yaml
 runner:
-  kind: DatabricksConnectRunner
+  kind: DatabricksExternalRunner
+  catalog: my_catalog
 ```
 
 If another installed family defines a class with the same name, qualify the kind with the family name:
 
 ```yaml
 runner:
-  kind: tia_databricks:DatabricksConnectRunner
+  kind: tia_databricks:DatabricksExternalRunner
+  catalog: my_catalog
 ```
 
 Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
