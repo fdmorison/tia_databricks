@@ -37,7 +37,7 @@ Run the ingestion jobs of a scenario before its refined jobs, which read the tab
 
 ## Before Running
 
-The examples assume the [setup in the README](../README.md#installation) is done: the extra installed, `tiozin.yaml` in place, the Databricks environment variables exported, and the workspace prepared for both runners.
+The examples assume the [setup in the README](../README.md#installation) is done: the extra installed, `tiozin.yaml` in place, `.env` filled in with the Databricks variables, and the workspace prepared for both runners.
 
 Run the jobs from the repository root. The input paths in the ingestion jobs, such as `examples/data/ecommerce/customers.csv`, are relative to it, and Tiozin looks for `tiozin.yaml` in the current directory.
 
