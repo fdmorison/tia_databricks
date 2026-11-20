@@ -1,0 +1,34 @@
+kind: LinearJob
+name: ingestion_hamlet_job
+owner: literature@tiozin.com
+maintainer: tiozin
+cost_center: tio_scrooge
+
+org: tiozin
+region: latam
+domain: literature
+subdomain: classics
+product: shakespeare
+model: hamlet
+layer: raw
+
+runner:
+  kind: DatabricksExternalRunner
+  host: "{{ ENV.DATABRICKS_HOST }}"
+  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+  format: iceberg
+  catalog: tiozin
+
+inputs:
+  - kind: SparkFileInput
+    name: load_hamlet
+    path: examples/data/{{product}}/{{model}}.txt
+    format: text
+
+outputs:
+  - kind: SparkTableOutput
+    name: save_hamlet
+    table: tiozin.default.{{layer}}_{{product}}_{{model}}
+    format: iceberg
+    mode: overwrite
