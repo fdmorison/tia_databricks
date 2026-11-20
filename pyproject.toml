@@ -20,6 +20,7 @@ classifiers = [
 ]
 
 dependencies = [
+  "tiozin >=5.0.0",
   "tio_spark >=0.1.1",
   "databricks-sdk >=0.102.0",
 ]
