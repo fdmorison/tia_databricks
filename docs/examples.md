@@ -28,37 +28,18 @@ One folder per data product. One YAML per job. No shared state between files.
 
 Each scenario has ingestion jobs and refined jobs, and they run Spark in different places:
 
-- **Ingestion jobs** run Spark on the local machine and write Unity Catalog tables from outside Databricks. They use [DatabricksExternalRunner](external-runner.md) with `format: iceberg` and `catalog: tiozin`.
-- **Refined jobs** run inside a Databricks cluster through [DatabricksConnectRunner](connect-runner.md). They read the tables written by the ingestion jobs and write new ones.
+- **Ingestion jobs** run Spark on the local machine and write Unity Catalog tables from outside Databricks. They use [DatabricksExternalRunner](external-runner.md) with `format: iceberg` and `catalog: tiozin`, which requires the `tio_spark` extra.
+- **Refined jobs** run inside a Databricks cluster through [DatabricksConnectRunner](connect-runner.md), which requires the `connect` extra. They read the tables written by the ingestion jobs and write new ones.
+
+The two extras cannot be combined, so the ingestion jobs and the refined jobs run in separate environments.
 
 Run the ingestion jobs of a scenario before its refined jobs, which read the tables they write.
 
 ## Before Running
 
-1. Install the extra that each job needs. The ingestion jobs use [DatabricksExternalRunner](external-runner.md), which requires the `tio_spark` extra. The refined jobs use [DatabricksConnectRunner](connect-runner.md), which requires the `connect` extra. The two extras cannot be combined in one environment. See [Installation](index.md#installation).
-2. For the ingestion jobs, set up external access to Unity Catalog. See [Before Running a Job](external-runner.md#before-running-a-job) for the metastore setting and the grant the service principal needs.
-3. Open a shell at the repository root. The input paths in the ingestion jobs, such as `examples/data/ecommerce/customers.csv`, are relative to it.
-4. Copy the example settings into place. Tiozin reads its settings from `tiozin.yaml` in the current directory, and that file is gitignored. The example jobs leave the Databricks workspace and credentials out of their `runner:` blocks, so without the settings file, the runners get no workspace or credentials.
+The examples assume the [setup in the README](../README.md#installation) is done: the extra installed, `tiozin.yaml` in place, the Databricks environment variables exported, and the workspace prepared for both runners.
 
-   ```bash
-   cp tiozin.example.yaml tiozin.yaml
-   ```
-
-   If copying the file is not an option, pass the example settings directly with `--settings-path tiozin.example.yaml`.
-
-5. Export the environment variables that the settings file reads. Its [runtime defaults](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults) fill in the arguments a job does not set: `host`, `client_id`, and `client_secret` for both runners, plus `cluster_id` for DatabricksConnectRunner.
-
-   - `DATABRICKS_HOST`: the Databricks workspace URL.
-   - `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
-   - `DATABRICKS_CLIENT_SECRET`: the client secret of the service principal.
-   - `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only the refined jobs use it.
-
-   ```bash
-   export DATABRICKS_HOST="https://my-workspace.cloud.databricks.com"
-   export DATABRICKS_CLIENT_ID="my-client-id"
-   export DATABRICKS_CLIENT_SECRET="my-client-secret"
-   export DATABRICKS_CLUSTER_ID="0123-456789-abcdefgh"
-   ```
+Run the jobs from the repository root. The input paths in the ingestion jobs, such as `examples/data/ecommerce/customers.csv`, are relative to it, and Tiozin looks for `tiozin.yaml` in the current directory.
 
 ## Two Transform Styles
 
