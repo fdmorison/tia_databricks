@@ -28,21 +28,32 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
 
 ## Installation
 
-The package requires Python 3.11 or later and installs Tiozin 4.x as a dependency. It comes with two extras, one for each place where Spark runs.
+Install `tia_databricks` like any other Python library. Tiozin comes with it.
 
-To run jobs on a Databricks cluster, install the `connect` extra. It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/), which [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md) uses to reach the cluster:
+Pick the extra for where Spark runs:
 
-```bash
-pip install "tia_databricks[connect]"
+- **On a Databricks cluster**: the `connect` extra, used by [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md). It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/).
+
+  ```bash
+  pip install "tia_databricks[connect]"
+  ```
+
+- **On the local machine**: the `tio_spark` extra, used by [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md). It installs `tiozin[tio_spark]`, which brings PySpark.
+
+  ```bash
+  pip install "tia_databricks[tio_spark]"
+  ```
+
+In a project, add the package to the project's dependencies instead, such as in `pyproject.toml`:
+
+```toml
+[project]
+dependencies = [
+  "tia_databricks[connect]",
+]
 ```
 
-To run Spark locally, install the `tio_spark` extra. It installs `tiozin[tio_spark]`, which brings the local PySpark that [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md) runs on:
-
-```bash
-pip install "tia_databricks[tio_spark]"
-```
-
-The two extras cannot be combined. Databricks Connect ships its own PySpark, so the `connect` extra must go in an environment without `tiozin[tio_spark]` or a separate `pyspark` package.
+The two extras cannot be combined. Databricks Connect ships its own PySpark, so install `connect` in an environment without `tiozin[tio_spark]` or a separate `pyspark` package.
 
 ## Setting Up tiozin.yaml
 
