@@ -61,21 +61,19 @@ The two extras cannot be combined. Databricks Connect ships its own PySpark, so 
 
 The example settings use `runtime_defaults` to connect the runners to Databricks.
 
-1. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
+1. Copy the example environment file at the repository root, then fill in the Databricks variables in the copy. The copy, `.env`, is gitignored.
 
    ```bash
    cp .env.example .env
    ```
 
-2. Fill in the Databricks variables in `.env`.
-
-3. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
+2. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
 
    ```bash
    cp tiozin.example.yaml tiozin.yaml
    ```
 
-4. Find the runner connection settings under `runtime_defaults`. They give each runner the workspace URL and service principal credentials, and DatabricksConnectRunner also gets the cluster ID. Each value is read from an environment variable:
+3. Find the runner connection settings under `runtime_defaults`. They give each runner the workspace URL and service principal credentials, and DatabricksConnectRunner also gets the cluster ID. Each value is read from an environment variable:
 
    ```yaml
    runtime_defaults:
@@ -92,7 +90,7 @@ The example settings use `runtime_defaults` to connect the runners to Databricks
        client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
    ```
 
-   A job that leaves these fields out takes them from here. The values come from the variables filled in `.env` in step 2.
+   A job that leaves these fields out takes them from here. The values come from the variables filled in `.env` in step 1.
 
 ## Preparing the Workspace
 
