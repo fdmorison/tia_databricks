@@ -2,28 +2,46 @@
 
 `tia_databricks` is the Tiozin family for [Databricks](https://docs.databricks.com/). A family is an installable package of Tiozin plugins that share the same runtime. See [The Family Model](https://github.com/fdmorison/tiozin/blob/main/docs/concepts/family.md) for how families fit into Tiozin.
 
-## Installation
-
-The package requires Python 3.11 or later and installs Tiozin 4.x as a dependency. Tiozin discovers the family automatically through the `tiozin.family` entry point, so its plugins are available by class name in job YAML right after installation.
-
-To run jobs on a Databricks cluster, install the `connect` extra. It installs [Databricks Connect](https://docs.databricks.com/aws/en/dev-tools/databricks-connect/):
-
-```bash
-pip install "tia_databricks[connect]"
-```
-
-To run Spark locally, install the `tio_spark` extra. It installs `tiozin[tio_spark]`, which brings the local PySpark that [DatabricksExternalRunner](external-runner.md) runs on:
-
-```bash
-pip install "tia_databricks[tio_spark]"
-```
-
-The two extras cannot be combined. Databricks Connect ships its own PySpark, so the `connect` extra must go in an environment without `tiozin[tio_spark]` or a separate `pyspark` package.
+[Installation](installation.md) covers the two extras and how to add the package to a project. [Getting Started](getting-started.md) sets up the example settings and the Databricks workspace.
 
 ## Plugins
 
 - [DatabricksConnectRunner](connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
 - [DatabricksExternalRunner](external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark` extra.
+
+## Using the Plugins in a Job
+
+After installation, the plugins are available by class name in any job:
+
+```yaml
+runner:
+  kind: DatabricksExternalRunner
+  catalog: tiozin
+```
+
+The snippets on this page leave out the workspace URL and credentials. With the settings from [Getting Started](getting-started.md), the runner takes them from `runtime_defaults`.
+
+If another installed family defines a class with the same name, qualify the kind with the family name:
+
+```yaml
+runner:
+  kind: tia_databricks:DatabricksExternalRunner
+  catalog: tiozin
+```
+
+## Passing Spark Config Options
+
+[Spark config options](https://spark.apache.org/docs/latest/configuration.html) go directly in the runner:
+
+```yaml
+runner:
+  kind: DatabricksExternalRunner
+  catalog: tiozin
+  spark.executor.memory: 4g
+  spark.sql.shuffle.partitions: 200
+```
+
+Each runner page explains how it applies them: [DatabricksConnectRunner](connect-runner.md#passing-spark-config-options) and [DatabricksExternalRunner](external-runner.md#passing-spark-config-options).
 
 ## Examples
 
