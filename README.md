@@ -6,8 +6,6 @@ A family is an installable package of Tiozin plugins that share the same runtime
 
 ## Usage
 
-Tiozin discovers the family automatically through the `tiozin.family` entry point. The family is registered as `tia_databricks`, and its Python package is `tia_databricks`.
-
 After installation, its plugins are available by class name in any job:
 
 ```yaml
