@@ -20,16 +20,18 @@ classifiers = [
 ]
 
 dependencies = [
-  "tiozin[tio_kernel] >=4.1.0,<5.0.0",
-  "databricks-sdk ~=0.102.0",
+  "tio_spark >=0.1.1",
+  "databricks-sdk >=0.102.0",
 ]
 
 [project.optional-dependencies]
-tio_spark = [
-  "tiozin[tio_spark] >=4.1.0,<5.0.0",
+tio_spark35 = [
+  "tio_spark[pyspark35]",
+]
+tio_spark40 = [
+  "tio_spark[pyspark40]",
 ]
 connect = [
-  "tiozin[tio_spark_base] >=4.1.0,<5.0.0",
   "databricks-connect >=15.4.0,<17.0.0",
 ]
 
@@ -47,12 +49,6 @@ lint = [
   "ruff ==0.14.10",
   "pre-commit ==4.3.0",
 ]
-pyspark = [
-  "tia_databricks[tio_spark]",
-]
-connect = [
-  "tia_databricks[connect]",
-]
 
 [project.entry-points."tiozin.family"]
 tia_databricks = "tia_databricks"
@@ -66,8 +62,8 @@ Issues = "https://github.com/fdmorison/tia_databricks/issues"
 required-version = ">=0.8.1"
 conflicts = [
   [
-    { group = "pyspark" },
-    { group = "connect" },
+    { extra = "tio_spark35" },
+    { extra = "tio_spark40" },
   ],
 ]
 

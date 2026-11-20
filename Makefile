@@ -9,23 +9,31 @@ hooks:
 
 install:
 	@rm -rf .venv
-	@uv sync
+	@uv sync --extra tio_spark35
 	@uv pip install -e .
 
-install-dev:
+install-dev: install-dev-pyspark35
+
+install-dev-pyspark35:
 	@rm -rf .venv
-	@uv sync --group pyspark
+	@uv sync --extra tio_spark35
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info
 
-install-pyspark:
+install-dev-pyspark40:
 	@rm -rf .venv
-	@uv sync --group pyspark
+	@uv sync --extra tio_spark40
+	@uv pip install -e .
+	@uv run pre-commit install
+	@rm -rf *.egg-info
 
-install-connect:
+install-dev-connect:
 	@rm -rf .venv
-	@uv sync --group connect
+	@uv sync --extra connect
+	@uv pip install -e .
+	@uv run pre-commit install
+	@rm -rf *.egg-info
 
 format:
 	@uv run ruff format
@@ -36,8 +44,8 @@ check:
 	@uv run ruff format --check
 
 test: clean
-	@UV_PROJECT_ENVIRONMENT=.venv-pyspark uv run --group pyspark pytest -vvv .
-	@UV_PROJECT_ENVIRONMENT=.venv-connect uv run --group connect pytest -vvv .
+	@UV_PROJECT_ENVIRONMENT=.venv-pyspark uv run --extra tio_spark35 pytest -vvv .
+	@UV_PROJECT_ENVIRONMENT=.venv-connect uv run --extra connect pytest -vvv .
 
 build:
 	@uv build

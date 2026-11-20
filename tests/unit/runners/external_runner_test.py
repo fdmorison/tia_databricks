@@ -181,7 +181,7 @@ def test_external_runner_should_raise_required_argument_error_when_argument_is_m
 # Testing DatabricksExternalRunner setup
 # ============================================================================
 @patch("tiozin.api.tiozin.current_context")
-@patch("tiozin.family.tio_spark.runners.spark_runner.SparkSession")
+@patch("tio_spark.runners.spark_runner.SparkSession")
 def test_setup_should_configure_unity_catalog_for_delta(
     spark_session: MagicMock, _current_context: MagicMock
 ):
@@ -224,7 +224,7 @@ def test_setup_should_configure_unity_catalog_for_delta(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("tiozin.family.tio_spark.runners.spark_runner.SparkSession")
+@patch("tio_spark.runners.spark_runner.SparkSession")
 def test_setup_should_configure_iceberg_rest_catalog_for_iceberg(
     spark_session: MagicMock, _current_context: MagicMock
 ):
@@ -271,7 +271,7 @@ def test_setup_should_configure_iceberg_rest_catalog_for_iceberg(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("tiozin.family.tio_spark.runners.spark_runner.SparkSession")
+@patch("tio_spark.runners.spark_runner.SparkSession")
 def test_setup_should_keep_options_as_spark_conf(
     spark_session: MagicMock, _current_context: MagicMock
 ):
@@ -301,7 +301,7 @@ def test_setup_should_keep_options_as_spark_conf(
 
 
 @patch("tiozin.api.tiozin.current_context")
-@patch("tiozin.family.tio_spark.runners.spark_runner.SparkSession")
+@patch("tio_spark.runners.spark_runner.SparkSession")
 def test_setup_should_reuse_session_when_session_already_exists(
     spark_session: MagicMock, _current_context: MagicMock
 ):
