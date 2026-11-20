@@ -1,6 +1,6 @@
 # Installation
 
-`tia_databricks` is installed as a Python dependency. It requires Python 3.11 or later and installs [tio_spark](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md), which brings Tiozin 4.1 or later. Tiozin discovers the family automatically, so its plugins are available by class name in job YAML right after installation.
+`tia_databricks` is installed as a Python dependency. It requires Python 3.11 or later and installs [Tiozin](https://github.com/fdmorison/tiozin) 5.0.0 or later and [tio_spark](https://github.com/fdmorison/tio_spark/blob/main/docs/index.md) 0.1.1 or later. Tiozin discovers the family automatically, so its plugins are available by class name in job YAML right after installation.
 
 The package installs `tio_spark` without PySpark. Its extras add what each place Spark runs needs: `connect` for a Databricks cluster, and `tio_spark35` or `tio_spark40` for the local machine.
 
