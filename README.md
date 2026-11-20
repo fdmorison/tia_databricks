@@ -31,10 +31,6 @@ After installation, its plugins are available by class name in any job:
 ```yaml
 runner:
   kind: DatabricksConnectRunner
-  host: "{{ ENV.DATABRICKS_HOST }}"
-  cluster_id: "{{ ENV.DATABRICKS_CLUSTER_ID }}"
-  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
-  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
 ```
 
 If another installed family defines a class with the same name, qualify the kind with the family name:
@@ -42,11 +38,46 @@ If another installed family defines a class with the same name, qualify the kind
 ```yaml
 runner:
   kind: tia_databricks:DatabricksConnectRunner
-  host: "{{ ENV.DATABRICKS_HOST }}"
-  cluster_id: "{{ ENV.DATABRICKS_CLUSTER_ID }}"
-  client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
-  client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
 ```
+
+Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
+
+## Connecting to Databricks
+
+Tiozin reads its settings from `tiozin.yaml` in the current directory. The repository ships `tiozin.example.yaml`, whose [runtime defaults](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults) fill in the arguments a job leaves out. They give [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md) and [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md) their `host`, `client_id`, and `client_secret`, plus `cluster_id` for DatabricksConnectRunner, all read from environment variables.
+
+1. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
+
+   ```bash
+   cp tiozin.example.yaml tiozin.yaml
+   ```
+
+2. Export the environment variables that the settings read, in the shell that runs the job:
+
+   - `DATABRICKS_HOST`: the Databricks workspace URL.
+   - `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
+   - `DATABRICKS_CLIENT_SECRET`: the client secret of the service principal.
+   - `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only DatabricksConnectRunner uses it.
+
+   ```bash
+   export DATABRICKS_HOST="https://my-workspace.cloud.databricks.com"
+   export DATABRICKS_CLIENT_ID="my-client-id"
+   export DATABRICKS_CLIENT_SECRET="my-client-secret"
+   export DATABRICKS_CLUSTER_ID="0123-456789-abcdefgh"
+   ```
+
+To use the example settings without copying them, pass them with the `--settings-path` option:
+
+```bash
+tiozin run examples/jobs/ecommerce/refined_orders_job.yaml --settings-path tiozin.example.yaml
+```
+
+## Preparing the Workspace
+
+Each runner also has requirements on the Databricks side, such as a cluster that [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md) can attach to and external access to Unity Catalog for [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md). Check them before the first run:
+
+- [Before running a job with DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md#before-running-a-job)
+- [Before running a job with DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md#before-running-a-job)
 
 ## Plugins
 
