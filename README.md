@@ -44,15 +44,27 @@ runner:
 
 Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
 
-## Connecting to Databricks
+## Setting Up tiozin.yaml
 
-1. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
+`tiozin.yaml` is the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md). It configures [registries](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#registries), such as the job and schema registries, and default plugin arguments under [`runtime_defaults`](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults).
+
+The example settings use `runtime_defaults` to connect the runners to Databricks.
+
+1. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in the Databricks variables in `.env`.
+
+3. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
 
    ```bash
    cp tiozin.example.yaml tiozin.yaml
    ```
 
-2. Find the runner settings in `tiozin.yaml`, under [`runtime_defaults`](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults). They give each runner the workspace URL and service principal credentials, and DatabricksConnectRunner also gets the cluster ID. Each value is read from an environment variable:
+4. Find the runner connection settings under `runtime_defaults`. They give each runner the workspace URL and service principal credentials, and DatabricksConnectRunner also gets the cluster ID. Each value is read from an environment variable:
 
    ```yaml
    runtime_defaults:
@@ -69,15 +81,7 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
        client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
    ```
 
-   A job that leaves these fields out takes them from here. The next steps set the variables in `.env`.
-
-3. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
-
-   ```bash
-   cp .env.example .env
-   ```
-
-4. Fill in the Databricks variables in `.env`.
+   A job that leaves these fields out takes them from here. The values come from the variables filled in `.env` in step 2.
 
 ## Preparing the Workspace
 
