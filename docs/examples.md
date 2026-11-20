@@ -35,27 +35,30 @@ Run the ingestion jobs of a scenario before its refined jobs, which read the tab
 
 ## Before Running
 
-The jobs read the Databricks workspace and credentials from environment variables:
+1. Install the extra that each job needs. The ingestion jobs use [DatabricksExternalRunner](external-runner.md), which requires the `tio_spark` extra. The refined jobs use [DatabricksConnectRunner](connect-runner.md), which requires the `connect` extra. The two extras cannot be combined in one environment. See [Installation](index.md#installation).
+2. For the ingestion jobs, set up external access to Unity Catalog. See [Before Running a Job](external-runner.md#before-running-a-job) for the metastore setting and the grant the service principal needs.
+3. Open a shell at the repository root. The input paths in the ingestion jobs, such as `examples/data/ecommerce/customers.csv`, are relative to it.
+4. Copy the example settings into place. Tiozin reads its settings from `tiozin.yaml` in the current directory, and that file is gitignored. The example jobs leave the Databricks workspace and credentials out of their `runner:` blocks, so without the settings file, the runners get no workspace or credentials.
 
-- `DATABRICKS_HOST`: the Databricks workspace URL.
-- `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
-- `DATABRICKS_CLIENT_SECRET`: the client secret of the service principal.
-- `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only the refined jobs use it.
+   ```bash
+   cp tiozin.example.yaml tiozin.yaml
+   ```
 
-Export them before running a job:
+   If copying the file is not an option, pass the example settings directly with `--settings-path tiozin.example.yaml`.
 
-```bash
-export DATABRICKS_HOST="https://my-workspace.cloud.databricks.com"
-export DATABRICKS_CLIENT_ID="my-client-id"
-export DATABRICKS_CLIENT_SECRET="my-client-secret"
-export DATABRICKS_CLUSTER_ID="0123-456789-abcdefgh"
-```
+5. Export the environment variables that the settings file reads. Its [runtime defaults](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults) fill in the arguments a job does not set: `host`, `client_id`, and `client_secret` for both runners, plus `cluster_id` for DatabricksConnectRunner.
 
-The ingestion jobs use [DatabricksExternalRunner](external-runner.md), which requires the `tio_spark` extra. The refined jobs use [DatabricksConnectRunner](connect-runner.md), which requires the `connect` extra. The two extras cannot be combined in one environment. See [Installation](index.md#installation).
+   - `DATABRICKS_HOST`: the Databricks workspace URL.
+   - `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
+   - `DATABRICKS_CLIENT_SECRET`: the client secret of the service principal.
+   - `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only the refined jobs use it.
 
-The ingestion jobs also need external access to Unity Catalog. See [Before Running a Job](external-runner.md#before-running-a-job) for the metastore setting and the grant the service principal needs.
-
-The input paths in the ingestion jobs, such as `examples/data/ecommerce/customers.csv`, are relative to the repository root. Run the jobs from there.
+   ```bash
+   export DATABRICKS_HOST="https://my-workspace.cloud.databricks.com"
+   export DATABRICKS_CLIENT_ID="my-client-id"
+   export DATABRICKS_CLIENT_SECRET="my-client-secret"
+   export DATABRICKS_CLUSTER_ID="0123-456789-abcdefgh"
+   ```
 
 ## Two Transform Styles
 
