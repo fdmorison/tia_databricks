@@ -44,8 +44,6 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
 
 ## Connecting to Databricks
 
-Tiozin reads its settings from `tiozin.yaml` in the current directory. The repository ships `tiozin.example.yaml`, whose [runtime defaults](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults) fill in the arguments a job leaves out. They give [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md) and [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md) their `host`, `client_id`, and `client_secret`, plus `cluster_id` for DatabricksConnectRunner, all read from environment variables.
-
 1. Copy the example settings at the repository root. The copy, `tiozin.yaml`, is gitignored.
 
    ```bash
@@ -58,29 +56,7 @@ Tiozin reads its settings from `tiozin.yaml` in the current directory. The repos
    cp .env.example .env
    ```
 
-3. Fill in the Databricks variables in `.env`:
-
-   - `DATABRICKS_HOST`: the Databricks workspace URL.
-   - `DATABRICKS_CLIENT_ID`: the client ID of the service principal.
-   - `DATABRICKS_CLIENT_SECRET`: the client secret of the service principal.
-   - `DATABRICKS_CLUSTER_ID`: the ID of the cluster that executes the job. Only DatabricksConnectRunner uses it.
-
-   ```bash
-   DATABRICKS_HOST=https://my-workspace.cloud.databricks.com
-   DATABRICKS_CLIENT_ID=my-client-id
-   DATABRICKS_CLIENT_SECRET=my-client-secret
-   DATABRICKS_CLUSTER_ID=0123-456789-abcdefgh
-   ```
-
-   The file also sets `SPARK_HOME` and `SPARK_LOCAL_IP` for local Spark.
-
-Variables already set in the shell work too, and they take precedence over `.env`.
-
-To use the example settings without copying them, pass them with the `--settings-path` option:
-
-```bash
-tiozin run examples/jobs/ecommerce/refined_orders_job.yaml --settings-path tiozin.example.yaml
-```
+3. Fill in the Databricks variables in `.env`.
 
 ## Preparing the Workspace
 
