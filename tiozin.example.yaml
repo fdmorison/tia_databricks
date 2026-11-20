@@ -18,12 +18,14 @@ registries:
     failfast: true
 
   schema:
-    kind: NoOpSchemaRegistry
-    description: Schema registry for local development
+    kind: FileSchemaRegistry
+    description: File-based schema registry for local development
+    location: examples/schemas
     timeout: 5
     readonly: false
     cache: false
     failfast: false
+    subject_template: "{{org}}.{{region}}.{{domain}}.{{subdomain}}.{{layer}}.{{product}}.{{model}}"
 
   lineage:
     kind: NoOpLineageRegistry
