@@ -22,8 +22,6 @@ runner:
   catalog: tiozin
 ```
 
-Neither `runner:` block sets the Databricks workspace or credentials. They come from `tiozin.yaml`, the [Tiozin settings file](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md).
-
 ## Installation
 
 `tia_databricks` is installed as a Python dependency. Once it is installed, its plugins are available in any job.
