@@ -52,13 +52,32 @@ Neither `runner:` block sets the Databricks workspace or credentials. They come 
    cp tiozin.example.yaml tiozin.yaml
    ```
 
-2. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
+2. Find the runner settings in `tiozin.yaml`, under [`runtime_defaults`](https://github.com/fdmorison/tiozin/blob/main/docs/settings/index.md#runtime-defaults). They give each runner the workspace URL and service principal credentials, and DatabricksConnectRunner also gets the cluster ID. Each value is read from an environment variable:
+
+   ```yaml
+   runtime_defaults:
+
+     - kind: DatabricksConnectRunner
+       host: "{{ ENV.DATABRICKS_HOST }}"
+       cluster_id: "{{ ENV.DATABRICKS_CLUSTER_ID }}"
+       client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+       client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+
+     - kind: DatabricksExternalRunner
+       host: "{{ ENV.DATABRICKS_HOST }}"
+       client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
+       client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+   ```
+
+   A job that leaves these fields out takes them from here. The next steps set the variables in `.env`.
+
+3. Copy the example environment file at the repository root. The copy, `.env`, is gitignored.
 
    ```bash
    cp .env.example .env
    ```
 
-3. Fill in the Databricks variables in `.env`.
+4. Fill in the Databricks variables in `.env`.
 
 ## Preparing the Workspace
 
