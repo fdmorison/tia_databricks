@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.1](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.0...tia_databricks-v0.1.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* get tiozin 5 through tio_spark 0.1.2 ([#24](https://github.com/fdmorison/tia_databricks/issues/24)) ([5e29cc6](https://github.com/fdmorison/tia_databricks/commit/5e29cc6cd641218bb0c8209f716eed93a8bf0fa4))
+* require tiozin 5 ([#23](https://github.com/fdmorison/tia_databricks/issues/23)) ([6246141](https://github.com/fdmorison/tia_databricks/commit/6246141bb4f62dfc62b7c28561fc697de11bcf81))
+* **tia_databricks:** Depend on the standalone tio_spark package ([#21](https://github.com/fdmorison/tia_databricks/issues/21)) ([744c590](https://github.com/fdmorison/tia_databricks/commit/744c59029f2b3e9969f1120edb9f36afabbcdaf0))
+
+
+### Documentation
+
+* **tia_databricks:** Add a one-minute example to the README ([#19](https://github.com/fdmorison/tia_databricks/issues/19)) ([d449aec](https://github.com/fdmorison/tia_databricks/commit/d449aec4a34eb5567ab997d99f2d5957b0c2d913))
+* **tia_databricks:** Simplify the README and examples ([#18](https://github.com/fdmorison/tia_databricks/issues/18)) ([576e434](https://github.com/fdmorison/tia_databricks/commit/576e43417d12ab1b829176cf37d8532c7dcae070))
+
 ## 0.1.0 (2026-11-15)
 
 
