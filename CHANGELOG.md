@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.1...tia_databricks-v0.1.2) (2026-11-22)
+
+
+### Bug Fixes
+
+* **tia_databricks:** Support Tiozin 6 ([#25](https://github.com/fdmorison/tia_databricks/issues/25)) ([14e8d0b](https://github.com/fdmorison/tia_databricks/commit/14e8d0b6da9e8554824bc19d454f2bba1024ce4e))
+
 ## [0.1.1](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.0...tia_databricks-v0.1.1) (2026-11-20)
 
 
