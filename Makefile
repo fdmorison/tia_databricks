@@ -7,29 +7,21 @@ clean:
 hooks:
 	@uv run pre-commit install
 
-install:
-	@rm -rf .venv
-	@uv sync --extra tio_spark35
-	@uv pip install -e .
+install: install-pyspark35
 
-install-dev: install-dev-pyspark35
-
-install-dev-pyspark35:
-	@rm -rf .venv
+install-pyspark35:
 	@uv sync --extra tio_spark35
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info
 
-install-dev-pyspark40:
-	@rm -rf .venv
+install-pyspark40:
 	@uv sync --extra tio_spark40
 	@uv pip install -e .
 	@uv run pre-commit install
 	@rm -rf *.egg-info
 
-install-dev-connect:
-	@rm -rf .venv
+install-connect:
 	@uv sync --extra connect
 	@uv pip install -e .
 	@uv run pre-commit install
