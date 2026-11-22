@@ -30,10 +30,12 @@ registries:
   lineage:
     kind: NoOpLineageRegistry
     description: Lineage registry for tracking data pipeline provenance
+    location: http://localhost:5000
     timeout: 5
     readonly: false
     cache: false
-    failfast: true
+    failfast: false
+    emit_level: job
 
   batch:
     kind: NoOpBatchRegistry
@@ -67,3 +69,26 @@ runtime_defaults:
     host: "{{ ENV.DATABRICKS_HOST }}"
     client_id: "{{ ENV.DATABRICKS_CLIENT_ID }}"
     client_secret: "{{ ENV.DATABRICKS_CLIENT_SECRET }}"
+
+  - kind: SparkRunner
+    streaming: false
+    log_level: "{{ ENV.LOG_LEVEL | default('WARN') }}"
+
+  - kind: SparkFileInput
+    format: parquet
+    schema_subject: auto
+
+  - kind: SparkTableInput
+    schema_subject: auto
+
+  - kind: SparkFileOutput
+    format: parquet
+    mode: append
+    schema_subject: auto
+
+  - kind: SparkTableOutput
+    schema_subject: auto
+
+  - kind: SparkWordCountTransform
+    content_field: value
+    lowercase: true
