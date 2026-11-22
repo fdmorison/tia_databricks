@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.4](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.3...tia_databricks-v0.1.4) (2026-11-22)
+
+
+### Features
+
+* **tia_databricks:** Add DatabricksLineageRegistry to report lineage to Unity Catalog ([#33](https://github.com/fdmorison/tia_databricks/issues/33)) ([2798871](https://github.com/fdmorison/tia_databricks/commit/2798871be6a675d190c6025d9578201ed76cb6df))
+
+
+### Bug Fixes
+
+* require databricks-sdk 0.169.0 or later ([#31](https://github.com/fdmorison/tia_databricks/issues/31)) ([8c4f69a](https://github.com/fdmorison/tia_databricks/commit/8c4f69abeb275cbc65b5a45e38ff4136a841e537))
+
 ## [0.1.3](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.2...tia_databricks-v0.1.3) (2026-11-22)
 
 
