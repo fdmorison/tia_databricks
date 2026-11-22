@@ -22,3 +22,8 @@ with suppress(ImportError):
     from .runners.external_runner import DatabricksExternalRunner
 
     __all__ += ["DatabricksExternalRunner"]
+
+with suppress(ImportError):
+    from .registries.lineage_registry import DatabricksLineageRegistry
+
+    __all__ += ["DatabricksLineageRegistry"]
