@@ -22,7 +22,7 @@ classifiers = [
 dependencies = [
   "tiozin >=6.0.2",
   "tio_spark >=0.1.3",
-  "databricks-sdk >=0.102.0",
+  "databricks-sdk >=0.169.0",
 ]
 
 [project.optional-dependencies]
