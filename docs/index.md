@@ -8,6 +8,7 @@
 
 - [DatabricksConnectRunner](connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
 - [DatabricksExternalRunner](external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark35` or `tio_spark40` extra, or a separately installed PySpark.
+- [DatabricksLineageRegistry](lineage-registry.md): reports job lineage to Unity Catalog through its External Lineage API.
 
 ## Using the Plugins in a Job
 

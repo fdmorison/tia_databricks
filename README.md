@@ -57,6 +57,7 @@ tiozin run examples/jobs/oneminute.yaml
 
 - [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md): runs Spark jobs inside a Databricks cluster through Databricks Connect. Requires the `connect` extra.
 - [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md): runs Spark jobs locally that read and write Unity Catalog tables from outside Databricks. Requires the `tio_spark35` or `tio_spark40` extra, or a separately installed PySpark.
+- [DatabricksLineageRegistry](https://github.com/fdmorison/tia_databricks/blob/main/docs/lineage-registry.md): reports job lineage to Unity Catalog through its External Lineage API.
 
 ## Documentation
 
@@ -69,6 +70,7 @@ tiozin run examples/jobs/oneminute.yaml
 - [The tia_databricks Family](https://github.com/fdmorison/tia_databricks/blob/main/docs/index.md)
 - [DatabricksConnectRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/connect-runner.md)
 - [DatabricksExternalRunner](https://github.com/fdmorison/tia_databricks/blob/main/docs/external-runner.md)
+- [DatabricksLineageRegistry](https://github.com/fdmorison/tia_databricks/blob/main/docs/lineage-registry.md)
 
 ### Learn More
 - [Tiozin](https://github.com/fdmorison/tiozin)
