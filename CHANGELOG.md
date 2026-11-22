@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.2...tia_databricks-v0.1.3) (2026-11-22)
+
+
+### Bug Fixes
+
+* **tia_databricks:** Let the project .env win over shell variables ([#29](https://github.com/fdmorison/tia_databricks/issues/29)) ([73f56f1](https://github.com/fdmorison/tia_databricks/commit/73f56f1040396c677b5cc91c9419708bb316227b))
+
 ## [0.1.2](https://github.com/fdmorison/tia_databricks/compare/tia_databricks-v0.1.1...tia_databricks-v0.1.2) (2026-11-22)
 
 
