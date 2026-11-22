@@ -3047,14 +3047,14 @@ test = [
 
 [[package]]
 name = "tio-spark"
-version = "0.1.4"
+version = "0.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "tiozin" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/60/46/43d4bbfbad85eec9f31412e48b36d502eded50592f287065878e5a70165d/tio_spark-0.1.4.tar.gz", hash = "sha256:6295b83e84928623507b17ffe8a79b45b3278d1af8fbfd8ccdb9037a9b63a513", size = 31545, upload-time = "2026-11-22T04:25:53.909Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/14/7da61455ee6ffe815eb4a4729b862fece025c9c50ce637ca4a95428fb47f/tio_spark-0.1.5.tar.gz", hash = "sha256:b02a731d25bbc55530d651c38e12727ede81b99d413f3e8c2236bed90c13f243", size = 31797, upload-time = "2026-11-22T16:15:50.44Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/ea/e92b8da0e1ce50e5ea4de52e2e9eb15118f2003efaeaa99b4cd26941e3f8/tio_spark-0.1.4-py3-none-any.whl", hash = "sha256:ff3eeae0c3f6eb11f78622d97094e2a9902cc6dda2b67ed21dc0c3cbb934ec16", size = 40966, upload-time = "2026-11-22T04:25:52.86Z" },
+    { url = "https://files.pythonhosted.org/packages/c8/0b/5b337073a81deebabb68509a4bd0762d5a1d0840d9c5e12a06c868502cd5/tio_spark-0.1.5-py3-none-any.whl", hash = "sha256:e0a1d3f55520af64947288a24a4917f3dcea1824b2121097129866132762e632", size = 41400, upload-time = "2026-11-22T16:15:49.525Z" },
 ]
 
 [package.optional-dependencies]
