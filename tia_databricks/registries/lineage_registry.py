@@ -144,7 +144,9 @@ class DatabricksLineageRegistry(LineageRegistry):
 
         job = self._create_external_metadata(
             ExternalMetadata(
-                name=f"{slugify(event.job.namespace)}:{slugify(event.job.name)}",
+                name=":".join(
+                    [slugify(event.job.namespace), *map(slugify, event.job.name.split("."))]
+                ),
                 system_type=SystemType.OTHER,
                 entity_type=JOB_ENTITY_TYPE,
                 properties={

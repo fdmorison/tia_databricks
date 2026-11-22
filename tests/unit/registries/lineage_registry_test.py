@@ -208,7 +208,7 @@ def test_emit_should_create_step_as_external_metadata(
     expected = [
         call(
             ExternalMetadata(
-                name="acme_latam_ecommerce_checkout:sales_job_load_customers",
+                name="acme_latam_ecommerce_checkout:sales_job:load_customers",
                 system_type=SystemType.OTHER,
                 entity_type="job",
                 properties={
